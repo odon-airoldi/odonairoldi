@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@fontsource-variable/zalando-sans-expanded/wght.css";
+@import "@fontsource-variable/zalando-sans-semiexpanded/wght.css";
 @import "@fontsource-variable/google-sans-flex/wght.css";
+@import "@fontsource-variable/plus-jakarta-sans/wght.css";
 
 
 .font-google {
@@ -9,4 +11,24 @@
 
 .font-zalando-expanded {
     font-family: 'Zalando Sans Expanded Variable', sans-serif;
+}
+
+.font-zalando-semiexpanded {
+    font-family: 'Zalando Sans SemiExpanded Variable', sans-serif;
+}
+
+.font-plus-jakarta {
+    font-family: 'Plus Jakarta Sans Variable', sans-serif;
+}
+
+/* link e bottoni hanno un cursor:pointer di default del browser che vince
+   sull'ereditarietà di cursor-none (Tailwind) sul contenitore: serve una regola
+   dedicata, più specifica, per nascondere la freccia nativa anche su di loro */
+.cursor-none a,
+.cursor-none button {
+    cursor: none;
+}
+
+.text-justify-last {
+    text-align-last: justify;
 }

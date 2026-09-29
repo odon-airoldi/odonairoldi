@@ -1,24 +1,34 @@
+
+import { useRef } from "react"
 import { Link } from "react-router-dom"
-import AppLogo from "../components/AppLogo"
+import AppHeader from "../components/AppHeader"
+import AppFooter from "../components/AppFooter"
+import { gsap } from "gsap"
+import { useGSAP } from "@gsap/react"
+
+gsap.registerPlugin(useGSAP)
 
 export default function IndexPage() {
+
+
+
     return (
-        <div className="bg-zinc-900 text-mist-50 h-svh p-8 font-google relative">
-            <div className="grid grid-cols-12">
-                <div className="col-span-5">
-                    <h1 className="text-6xl font-zalando-expanded font-normal">Odon Airoldi</h1>
-                    <h2 className="text-2xl font-light">Full Stack Developer</h2>
-                    <h2 className="text-xl font-light">Graphic Designer</h2>
-                    <Link to="/cv">CV</Link>
-                    <div className="p-8">
-                        <AppLogo />
-                    </div>
+
+        <div className="h-svh">
+
+            <div className="grid grid-cols-6">
+
+                <div className="col-span-1 col-start-2">
+                    <h3 className="text-lg/4 uppercase"><Link to="/">OA</Link></h3>
                 </div>
-                <div className="col-span-4 col-start-7">
-                    <h3 className="font-zalando-expanded text-xl uppercase mb-6">Competenze</h3>
-                    <ul className="uppercase_ tracking-[.125em]">
-                        <li className="text-sm/6 mb-6 font-extralight">
-                            <span className="font-zalando-expanded inline-block uppercase -translate-x-full">Frontend</span>
+                <div className="col-span-1">
+                    <h3 className="text-lg/4 uppercase"><Link to="/cv">CV</Link></h3>
+                </div>
+                <div className="col-span-1">
+                    <h3 className="text-lg/4 uppercase mb-4">Stack</h3>
+                    <ul className="text-sm tracking-[.1em]">
+                        <li className="mb-4 font-extralight">
+                            <span className="inline-block -translate-x-full">Frontend</span>
                             <ul className="">
                                 <li>React</li>
                                 <li>JavaScript</li>
@@ -26,8 +36,8 @@ export default function IndexPage() {
                                 <li>Bootstrap</li>
                             </ul>
                         </li>
-                        <li className="text-sm/6 mb-6 font-extralight">
-                            <span className="font-zalando-expanded inline-block uppercase -translate-x-full">Backend</span>
+                        <li className="mb-4 font-extralight">
+                            <span className="inline-block -translate-x-full">Backend</span>
                             <ul className="">
                                 <li>Node</li>
                                 <li>Express</li>
@@ -35,26 +45,26 @@ export default function IndexPage() {
                                 <li>Laravel</li>
                             </ul>
                         </li>
-                        <li className="text-sm/6 mb-6 font-extralight">
-                            <span className="font-zalando-expanded inline-block uppercase -translate-x-full">Database</span>
+                        <li className="mb-4 font-extralight">
+                            <span className="inline-block -translate-x-full">Database</span>
                             <ul className="">
                                 <li>Mysql</li>
                                 <li>Sqlite</li>
                             </ul>
                         </li>
-                        <li className="text-sm/6 mb-6 font-extralight">
-                            <span className="font-zalando-expanded inline-block uppercase -translate-x-full">Cms</span>
+                        <li className="mb-4 font-extralight">
+                            <span className="inline-block -translate-x-full">Cms</span>
                             <ul className="">
                                 <li>Wordpress</li>
                             </ul>
                         </li>
                     </ul>
                 </div>
-                <div className="col-span-2">
-                    <h3 className="font-zalando-expanded text-xl uppercase mb-6">Progetti</h3>
-                    <ul className="uppercase_ tracking-[.125em]">
-                        <li className="text-sm/6 mb-6 font-extralight">
-                            <span className="font-zalando-expanded inline-block uppercase -translate-x-full">Web site</span>
+                <div className="col-span-1">
+                    <h3 className="text-lg/4 uppercase mb-4">Work</h3>
+                    <ul className="text-sm tracking-[.1em]">
+                        <li className="mb-6 font-extralight">
+                            <span className="inline-block -translate-x-full">WebSite</span>
                             <ul className="">
                                 <li>run-club.dev</li>
                                 <li><a href="https://www.tuttocialde.it">tuttocialde.it</a></li>
@@ -64,8 +74,8 @@ export default function IndexPage() {
                                 <li><a href="https://www.studiofotograficolops.it">studiofotograficolops.it</a></li>
                             </ul>
                         </li>
-                        <li className="text-sm/6 mb-6 font-extralight">
-                            <span className="font-zalando-expanded inline-block uppercase -translate-x-full">Graphic</span>
+                        <li className="mb-6 font-extralight">
+                            <span className="inline-block -translate-x-full">Graphic</span>
                             <ul className="">
                                 <li>Tenuta Casa Virginia</li>
                                 <li>Le Corne</li>
@@ -77,14 +87,14 @@ export default function IndexPage() {
                 </div>
             </div>
 
-            <footer className="absolute bottom-0 start-0">
-                {/* <div className="">
-                    <div className="w-[48px] h-[48px] relative origin-top-left -rotate-45 bg-linear-[45deg] from-zinc-900 from-50% to-mist-300 to-50%">
-                        <div className="w-[46px] h-[46px] rounded-full bg-zinc-900 absolute top-[1px] left-[1px]"></div>
-                    </div>
-                </div> */}
-            </footer>
+            <div className="absolute bottom-10 inset-x-4 overflow-hidden">
+                <h1 className="text-8xl uppercase font-medium leading-20 tracking-tighter text-justify text-justify-last">
+                    <span className="block">Odon Airoldi </span>
+                    <span className="block">fullstack developer </span>
+                    <span className="block">from graphic design</span>
+                </h1>
+            </div>
 
-        </div>
+        </div >
     )
 }
