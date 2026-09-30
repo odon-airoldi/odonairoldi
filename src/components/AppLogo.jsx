@@ -4,7 +4,7 @@ import { useRef } from "react"
 
 gsap.registerPlugin(useGSAP)
 
-export default function AppLogo({ onComplete }) {
+export default function AppLogo() {
     const logoRef = useRef(null);
 
     useGSAP(() => {
@@ -35,7 +35,7 @@ export default function AppLogo({ onComplete }) {
             gsap.set(el, { x: startX, y: startY, width: w, scaleX: 12 / w, transformOrigin: 'center center', opacity: 1 })
         );
 
-        const tl = gsap.timeline({ delay: .6 });
+        const tl = gsap.timeline({ delay: .2 });
 
         // fase 0: gli 8 pezzi partono impilati nel centro del quadrato, piccoli (12px) e
         // invisibili. Appaiono in dissolvenza mentre si aprono verso la loro posizione nel
@@ -89,8 +89,6 @@ export default function AppLogo({ onComplete }) {
         // fatto fare tutto agli indigo da soli) — 4 sale per primo, 5 lo segue
         tl.to([d1, d2, d3, d6, d7, d8], { y: 0, duration: .8, ease: "power4.inOut", delay: .2 });
         tl.to([d4, d5], { y: 0, duration: .8, ease: "power4.inOut" }, "<");
-
-        if (onComplete) tl.eventCallback("onComplete", onComplete);
 
         return () => tl.kill();
     }, { scope: logoRef });

@@ -1,7 +1,8 @@
 // importa le due funzioni di React per creare e leggere un context
-import { createContext, useContext, useRef } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import AppIntro from "../components/AppIntro";
 
 gsap.registerPlugin(useGSAP);
 
@@ -9,10 +10,14 @@ gsap.registerPlugin(useGSAP);
 const AppContext = createContext();
 
 // componente Provider, riceve children (i componenti che avvolgerà)
-function AppProvider({ children, skipIntroDelay = false }) {
+function AppProvider({ children }) {
+
+    // la splash vive qui (non più in App.jsx) perché la sua durata determina il
+    // delay del fade qui sotto: tenerle insieme evita di passare skipIntroDelay
+    // come prop attraverso App.jsx
+    const [showSplash, setShowSplash] = useState(true);
 
     const cursorRef = useRef(null);
-    const fadeRef = useRef(null);
 
     // cursore custom globale: essendo nel Provider (che avvolge tutte le pagine
     // in App.jsx), funziona ovunque senza doverlo ripetere in ogni pagina
@@ -28,33 +33,19 @@ function AppProvider({ children, skipIntroDelay = false }) {
 
 
 
-    useGSAP(() => {
-        // fade in della pagina, temporizzato per iniziare quando lo Splash comincia la
-        // propria dissolvenza: le due dissolvenze si sovrappongono.
-        // Questo delay ha senso solo al primissimo caricamento, mentre lo Splash è ancora
-        // a schermo — se si torna qui navigando (es. da /cv) lo Splash non c'è più, quindi
-        // niente attesa, altrimenti la pagina resterebbe invisibile per 4s senza motivo
-        gsap.set(fadeRef.current, { opacity: 0 });
-        gsap.to(fadeRef.current, { opacity: 1, duration: 1, delay: skipIntroDelay ? 0 : 4, ease: "power1.out" });
-    }, { scope: fadeRef });
-
-
 
     return (
         // .Provider è il componente che distribuisce il value ai discendenti
         <AppContext.Provider
             value={{
                 // qui vanno i dati/funzioni condivisi
-                fadeRef,
-                cursorRef
+                cursorRef,
+                // esposto così le pagine possono far partire le proprie
+                // animazioni solo quando la splash è finita
+                showSplash
             }}
         >
-            {/* z-50: senza uno z-index esplicito, questo div (position:fixed,
-                z-index:auto) finisce nello stesso "livello" di impilamento dei
-                contenitori position:relative delle pagine (es. IndexPage), e
-                venendo dopo nel DOM questi ultimi lo coprono completamente.
-                pointer-events-none: essendo sempre sotto il mouse, altrimenti
-                bloccherebbe click/hover su link e bottoni della pagina */}
+            {showSplash && <AppIntro onDone={() => setShowSplash(false)} />}
             {
                 // renderizza i componenti figli passati ad AppProvider
                 children
