@@ -9,7 +9,7 @@ export default function AppFooter() {
     return (
 
         <footer>
-            <div className={`hidden sm:fixed sm:bottom-4 sm:left-auto sm:right-4 ${pathname === "/" ? 'fixed bottom-4 left-4 right-4' : ''}`}>
+            <div className={`sm:fixed sm:bottom-4 sm:left-auto sm:right-4 ${pathname === "/" ? 'fixed bottom-4 left-4 right-4' : ''}`}>
                 <div className="w-full sm:w-24 xl:w-32">
                     <AppLogo />
                 </div>
