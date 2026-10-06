@@ -43,7 +43,7 @@ export default function AppList({ list }) {
                                     ) : (
                                         <li key={voce.id}>
                                             <button className="cursor-pointer" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>{voce.title}</button>
-                                            {/* {openId === voce.id && voce.url &&
+                                            {openId === voce.id && voce.url &&
                                                 <div className="pt-2 pb-8 w-full">
                                                     <Link to={voce.url} target="_blank" className="text-[10px] xl:text-xs block">
                                                         {voce.description}
@@ -52,7 +52,7 @@ export default function AppList({ list }) {
                                                 </div>
                                             }
                                             {openId === voce.id && voce.gallery && createPortal(
-                                                <div className="fixed z-50 inset-0 flex items-center justify-center">
+                                                <div className="fixed z-50 inset-0 flex items-center justify-center overflow-hidden">
                                                     <div className="absolute inset-0 z-51" onClick={() => setOpenId(null)}></div>
                                                     <ul className="grid place-items-center z-52" ref={itemsRef}>
                                                         {voce.gallery.map((img) => (
@@ -63,7 +63,7 @@ export default function AppList({ list }) {
                                                     </ul>
                                                     <div className="drag-proxy hidden" ref={dragProxyRef}></div>
                                                 </div>, document.body)
-                                            } */}
+                                            }
                                         </li>
                                     )
                                 ))
