@@ -1,10 +1,12 @@
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import { setElement, toElement } from "../utils/gsap"
-
+import { stack, formazione, esperienza, work } from "../data/data"
+import AppList from "../components/AppList";
 
 gsap.registerPlugin(useGSAP);
 
@@ -14,6 +16,14 @@ export default function CurriculumPage() {
 
     const pageRef = useRef(null);
     const { showSplash } = useAppContext();
+
+    // apre il pdf in una nuova scheda: essendo un pdf (non html), il
+    // browser lo mostra nel proprio lettore pdf nativo invece di
+    // navigarci sopra — niente dialogo di stampa, il file va rigenerato ed
+    // esportato a mano in public/cv.pdf quando il cv cambia
+    const handleGetCv = () => {
+        window.open("/cv.pdf", "_blank");
+    };
 
     useGSAP(() => {
         // nasconde subito Formazione/Esperienza/Stack/Work nella loro
@@ -35,220 +45,126 @@ export default function CurriculumPage() {
         toElement();
     }, { scope: pageRef, dependencies: [showSplash] });
 
+
+    const [copied, setCopied] = useState(false)
+
+    // mostra "Email copied" solo se la copia negli appunti riesce davvero (try), non a
+    // prescindere dal click: se il browser nega il permesso (catch) il testo resta
+    // invariato invece di dare un falso esito positivo. Torna a "Email me" dopo 2s
+    const handleCopyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText('odon.airoldi@gmail.com')
+            setCopied(true)
+            setTimeout(() => setCopied(false), 2000)
+        } catch { }
+    }
+
+    // API key openweathermap
+    const apiKey = import.meta.env.VITE_API_KEY_OWM
+    const [dataWeather, setDataWeather] = useState({})
+    // Chiamata AJAX tramite fetch API openweathermap
+    useEffect(() => {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=Lecco&appid=${apiKey}&units=metric`)
+            .then(res => res.json())
+            .then(data => {
+                setDataWeather(data)
+            })
+    }, [apiKey])
+
     return (
-        <div ref={pageRef}>
+        <div ref={pageRef} className="print:relative print:min-h-[calc(29.7cm-32px)]">
 
-            <div className="grid grid-cols-6 pb-16">
-
-                <div className="col-span-1 col-start-2">
-                    <h3 className="text-lg/4 uppercase mb-4 h3">Odon</h3>
+            <div className="hidden print:block">
+                <div className="grid grid-cols-10">
+                    <div className="col-span-10 border-b mb-2 uppercase text-xs flex justify-between">
+                        <div>17 12 1987</div>
+                        <div>+39 3409900243</div>
+                        <div>odon.airoldi@gmail.com</div>
+                        <div>Lecco</div>
+                    </div>
+                    <div className="col-span-10 border-b mb-2 uppercase text-xs flex justify-between">
+                        <div><Link to="https://www.linkedin.com/in/odon-airoldi/">linkedin.com/in/odon-airoldi</Link></div>
+                        <div><Link to="https://github.com/odon-airoldi">github.com/odon-airoldi</Link></div>
+                        <div><Link to="https://www.odon-airoldi.com">odon-airoldi.com</Link></div>
+                    </div>
+                    <div className="col-span-10 border-b mb-2 uppercase text-xs flex justify-between">
+                        <div>From</div>
+                        <div>graphic</div>
+                        <div>designer</div>
+                        <div>to</div>
+                        <div>fullstack</div>
+                        <div>developer</div>
+                    </div>
+                    <div className="col-span-4">
+                        <img className="w-full pe-4" src="https://placehold.co/400x400" />
+                    </div>
+                    <div className="col-span-6">
+                        <h1 className="text-[40px] leading-none font-medium uppercase text-justify text-justify-last tracking-tighter">Odon Airoldi</h1>
+                    </div>
                 </div>
-                <div className="col-span-1">
-                    <h3 className="text-lg/4 uppercase mb-4 h3">Airoldi</h3>
-                </div>
-                <div className="col-span-1">
-                    <h3 className="text-lg/4 uppercase mb-4 h3">17 12 87</h3>
-                </div>
-                <div className="col-span-1">
-                    <h3 className="text-lg/4 uppercase mb-4 h3">23900</h3>
-                </div>
-                <div className="col-span-1">
-                    <button type="button" className="text-lg/4 uppercase block ms-auto cursor-pointer">
-                        Get CV
-                    </button>
-                </div>
-
             </div>
 
-            <div className="grid grid-cols-6 pb-16">
+            <div className="grid grid-cols-12 gap-y-4 print:grid-cols-10 print:-translate-y-1/2">
 
-                <div className="col-span-4 col-start-3">
-                    <p className="text-[40px]/[40px] uppercase text-justify text-justify-last">
+                <div className="col-span-6 lg:col-span-3 print:hidden">
+                    <h3 className="font-extralight leading-none uppercase print:text-6xl print:font-medium"><Link to="/">Odon Airoldi</Link></h3>
+                </div>
+                <div className="lg:col-span-2 max-lg:hidden print:hidden">
+                    <h3 className="font-extralight leading-none uppercase print:text-right">23900</h3>
+                </div>
+                <div className="lg:col-span-2 max-lg:hidden print:hidden">
+                    <h3 className="font-extralight leading-none uppercase">17 12 87</h3>
+                </div>
+                <div className="col-span-6 lg:col-span-2">
+                    <button className="font-extralight leading-none uppercase cursor-pointer block max-lg:ms-auto" to="/cv">Get CV</button>
+                </div>
+                <div className="lg:col-span-2 max-lg:hidden print:hidden">
+                    <button className="font-extralight leading-none uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
+                        {copied ? "Email copied" : "Email me"}
+                    </button>
+                </div>
+                <div className="lg:col-span-1 max-lg:hidden print:hidden print:hidden">
+                    <h3 className="font-extralight leading-none uppercase">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</h3>
+                </div>
+
+                <div className="col-span-12 print:col-span-6 print:col-start-5">
+                    <p className="text-[clamp(1.5rem,3.125vw,2.5rem)] font-[450] leading-none uppercase text-justify print:text-[20px]/[20px] print:normal-case">
                         {introText.split(" ").flatMap((word, i) => [
-                            <span key={`w-${i}`} className="inline-block overflow-hidden align-bottom">
+                            <span key={`w-${i}`} className="inline-block overflow-hidden align-bottom print:overflow-visible">
                                 <span className="reveal-text inline-block">{word}</span>
                             </span>,
                             " ",
                         ])}
-
                     </p>
                 </div>
+
             </div>
+            <div className="grid grid-cols-12 gap-y-24 py-24 print:grid-cols-10 print:-translate-y-1/2">
 
-            <div className="grid grid-cols-6">
-
-                <div className="col-span-2 col-start-3">
-                    <h3 className="text-lg/4 uppercase mb-4">Formazione</h3>
-                    <ul className="text-sm tracking-[.1em]">
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Boolean</span>
-                            <ul className="ul">
-                                <li>Web Development</li>
-                                <li>Online</li>
-                                <li>2026</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Isgmd Design Academy</span>
-                            <ul className="ul">
-                                <li>Graphic Design</li>
-                                <li>Lecco</li>
-                                <li>2010 2012</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Accademia di Brera</span>
-                            <ul className="ul">
-                                <li>Scultura</li>
-                                <li>Milano</li>
-                                <li>2007 2009</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Liceo Artistico M Rosso</span>
-                            <ul className="ul">
-                                <li>Architettura</li>
-                                <li>Lecco</li>
-                                <li>2002 2006</li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3">
+                    <h3 className="font-extralight tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
+                    <AppList list={formazione} />
                 </div>
-                <div className="col-span-2">
-                    <h3 className="text-lg/4 uppercase mb-4">Esperienza</h3>
-                    <ul className="text-sm tracking-[.1em]">
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Agostani Caffè</span>
-                            <ul className="ul">
-                                <li>Graphic designer</li>
-                                <li>Frontend developer</li>
-                                <li>Molteno</li>
-                                <li>2022 2025</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Studiolabo</span>
-                            <ul className="ul">
-                                <li>Frontend developer</li>
-                                <li>Milano</li>
-                                <li>2020 2022</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Ardesia Studio</span>
-                            <ul className="ul">
-                                <li>Co Founder</li>
-                                <li>Graphic Designer</li>
-                                <li>Bergamo</li>
-                                <li>2014 2019</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Office Milano</span>
-                            <ul className="ul">
-                                <li>Graphic Designer</li>
-                                <li>Milano</li>
-                                <li>2012</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Oikos</span>
-                            <ul className="ul">
-                                <li>Graphic Designer</li>
-                                <li>Monza</li>
-                                <li>2011</li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div className="col-span-6 col-start-7 md:col-span-3 print:col-span-3">
+                    <h3 className="font-extralight tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</h3>
+                    <AppList list={esperienza} />
                 </div>
-                <div className="col-span-1">
+                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-start-9">
+                    <h3 className="font-extralight tracking-wide uppercase mb-4 print:text-sm print:normal-case">Stack</h3>
+                    <AppList list={stack} />
                 </div>
-                <div className="col-span-1 col-start-2">
-                    <h3 className="text-lg/4 uppercase mb-4">Stack</h3>
-                    <ul className="text-sm tracking-[.1em]">
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Frontend</span>
-                            <ul className="ul">
-                                <li>React</li>
-                                <li>JavaScript</li>
-                                <li>Tailwind</li>
-                                <li>Bootstrap</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Backend</span>
-                            <ul className="ul">
-                                <li>Node</li>
-                                <li>Express</li>
-                                <li>Php</li>
-                                <li>Laravel</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Database</span>
-                            <ul className="ul">
-                                <li>Mysql</li>
-                                <li>Sqlite</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Cms</span>
-                            <ul className="ul">
-                                <li>Wordpress</li>
-                            </ul>
-                        </li>
-                        <li className="mb-4 font-extralight">
-                            <span className="inline-block reveal-shift">Design</span>
-                            <ul className="ul">
-                                <li>Illustrator</li>
-                                <li>Indesign</li>
-                                <li>Photoshop</li>
-                                <li>Branding</li>
-                                <li>Packaging</li>
-                                <li>Web design</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div className="col-span-1">
-                    <h3 className="text-lg/4 uppercase mb-4">Work</h3>
-                    <ul className="text-sm tracking-[.1em]">
-                        <li className="mb-6 font-extralight">
-                            <span className="inline-block reveal-shift">WebSite</span>
-                            <ul className="ul">
-                                <li>run-club.dev</li>
-                                <li><a href="https://www.tuttocialde.it">tuttocialde.it</a></li>
-                                <li><a href="https://www.caffeagostani.com">caffeagostani.com</a></li>
-                                <li><a href="https://geomont.com">geomont.com</a></li>
-                                <li><a href="https://essense-magazine.com">essense-magazine.com</a></li>
-                                <li><a href="https://www.studiofotograficolops.it">studiofotograficolops.it</a></li>
-                            </ul>
-                        </li>
-                        <li className="mb-6 font-extralight">
-                            <span className="inline-block reveal-shift">Graphic</span>
-                            <ul className="ul">
-                                <li>Tenuta Casa Virginia</li>
-                                <li>Le Corne</li>
-                                <li>Nove Lune</li>
-                                <li>Bergamo Sposi</li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div className="col-span-6 col-start-7 md:col-span-3 print:hidden">
+                    <h3 className="font-extralight tracking-wide uppercase mb-4">Work</h3>
+                    <AppList list={work} />
                 </div>
 
             </div>
 
-            <div className="h-12 w-21 relative">
-                <div className="bg-zinc-200 h-3 w-3 absolute left-3 top-0"></div>
-                <div className="bg-zinc-200 h-12 w-3 absolute left-0 top-0"></div>
-                <div className="bg-zinc-200 h-12 w-3 absolute left-6 top-0"></div>
-                <div className="bg-zinc-200 h-3 w-3 absolute left-3 top-9"></div>
 
-
-                <div className="bg-zinc-200 h-3 w-3 absolute left-15 top-0"></div>
-                <div className="bg-zinc-200 h-3 w-3 absolute left-15 top-6"></div>
-                <div className="bg-zinc-200 h-12 w-3 absolute left-12 top-0"></div>
-                <div className="bg-zinc-200 h-12 w-3 absolute left-18 top-0"></div>
+            <div className="hidden print:block print:absolute print:bottom-0 print:inset-x-0">
+                <div className="font-medium text-[40px] text-justify text-justify-last tracking-tighter uppercase">
+                    Portfolio on <Link to="https://www.odon-airoldi.com">odon-airoldi.com</Link>
+                </div>
             </div>
 
         </div>

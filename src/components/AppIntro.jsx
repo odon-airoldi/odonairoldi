@@ -46,10 +46,10 @@ export default function AppIntro({ onDone }) {
 
     return (
         <div ref={containerRef} className="fixed inset-0 z-50 bg-zinc-950 text-zinc-200 cursor-none">
-            <div ref={cursorRef} className="text-2xl font-extralight font-zalando-expanded pointer-events-none">
+            <div ref={cursorRef} className="text-2xl font-extralight font-zalando font-stretch-expanded pointer-events-none">
                 <span ref={counterRef}>0</span>%
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[2]">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48">
                 <AppLogo />
             </div>
         </div>

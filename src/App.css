@@ -1,24 +1,16 @@
 @import "tailwindcss";
-@import "@fontsource-variable/zalando-sans-expanded/wght.css";
-@import "@fontsource-variable/zalando-sans-semiexpanded/wght.css";
-@import "@fontsource-variable/google-sans-flex/wght.css";
-@import "@fontsource-variable/plus-jakarta-sans/wght.css";
+@import "@fontsource-variable/zalando-sans/wdth.css";
 
-
-.font-google {
-    font-family: 'Google Sans Flex Variable', sans-serif;
+.font-zalando {
+    font-family: 'Zalando Sans Variable', sans-serif;
 }
 
-.font-zalando-expanded {
-    font-family: 'Zalando Sans Expanded Variable', sans-serif;
+.text-justify-last {
+    text-align-last: justify;
 }
 
-.font-zalando-semiexpanded {
-    font-family: 'Zalando Sans SemiExpanded Variable', sans-serif;
-}
-
-.font-plus-jakarta {
-    font-family: 'Plus Jakarta Sans Variable', sans-serif;
+.text-justify-inter-character {
+    text-justify: inter-character;
 }
 
 /* link e bottoni hanno un cursor:pointer di default del browser che vince
@@ -29,6 +21,24 @@
     cursor: none;
 }
 
-.text-justify-last {
-    text-align-last: justify;
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+
+    .reveal-shift {
+        transform: translateX(-100%) !important;
+    }
+
+    .ul {
+        transform: translateX(0) !important;
+    }
+
+    .reveal-text {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+    }
+
 }

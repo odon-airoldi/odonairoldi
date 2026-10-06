@@ -20,16 +20,23 @@ function AppProvider({ children }) {
     const cursorRef = useRef(null);
 
     // cursore custom globale: essendo nel Provider (che avvolge tutte le pagine
-    // in App.jsx), funziona ovunque senza doverlo ripetere in ogni pagina
+    // in App.jsx), funziona ovunque senza doverlo ripetere in ogni pagina.
+    // dependencies: [] lo fa girare una sola volta al mount — senza, essendo
+    // senza cleanup, ogni re-render di AppProvider (es. quando showSplash
+    // cambia) aggiungerebbe un nuovo listener invece di riusare quello
+    // esistente, facendo accumulare handler duplicati nel tempo
     useGSAP(() => {
 
         const handleMove = (e) => {
-            gsap.set(cursorRef.current, { x: e.clientX - 12, y: e.clientY - 12 });
+            gsap.set(cursorRef.current, { x: e.clientX - 0, y: e.clientY - 0 });
         };
 
         window.addEventListener("mousemove", handleMove);
 
-    });
+        return () => {
+            window.removeEventListener("mousemove", handleMove);
+        };
+    }, { dependencies: [] });
 
 
 
