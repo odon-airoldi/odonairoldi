@@ -99,7 +99,7 @@ export default function CurriculumPage() {
                         <img className="w-full pe-4" src="https://placehold.co/400x400" />
                     </div>
                     <div className="col-span-6">
-                        <h1 className="text-[40px] leading-none font-medium uppercase text-justify text-justify-last tracking-tighter">Odon Airoldi</h1>
+                        <h1 className="text-[40px] font-medium uppercase text-justify text-justify-last tracking-tighter">Odon Airoldi</h1>
                     </div>
                 </div>
             </div>
@@ -107,28 +107,28 @@ export default function CurriculumPage() {
             <div className="grid grid-cols-12 gap-y-4 print:grid-cols-10 print:-translate-y-1/2">
 
                 <div className="col-span-6 lg:col-span-3 print:hidden">
-                    <h3 className="font-extralight leading-none uppercase print:text-6xl print:font-medium"><Link to="/">Odon Airoldi</Link></h3>
+                    <h3 className="font-extralight tracking-wide uppercase print:text-6xl print:font-medium"><Link to="/">Odon Airoldi</Link></h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <h3 className="font-extralight leading-none uppercase print:text-right">23900</h3>
+                    <h3 className="font-extralight tracking-wide uppercase print:text-right">23900</h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <h3 className="font-extralight leading-none uppercase">17 12 87</h3>
+                    <h3 className="font-extralight tracking-wide uppercase">17 12 87</h3>
                 </div>
                 <div className="col-span-6 lg:col-span-2">
-                    <button className="font-extralight leading-none uppercase cursor-pointer block max-lg:ms-auto" to="/cv">Get CV</button>
+                    <button className="font-extralight tracking-wide uppercase cursor-pointer block max-lg:ms-auto" to="/cv">Get CV</button>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <button className="font-extralight leading-none uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
+                    <button className="font-extralight tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
                         {copied ? "Email copied" : "Email me"}
                     </button>
                 </div>
                 <div className="lg:col-span-1 max-lg:hidden print:hidden print:hidden">
-                    <h3 className="font-extralight leading-none uppercase">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</h3>
+                    <h3 className="font-extralight tracking-wide uppercase">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</h3>
                 </div>
 
                 <div className="col-span-12 print:col-span-6 print:col-start-5">
-                    <p className="text-[clamp(1.5rem,3.125vw,2.5rem)] font-[450] leading-none uppercase text-justify print:text-[20px]/[20px] print:normal-case">
+                    <p className="text-[clamp(1.5rem,3.125vw,2.5rem)] font-[450] uppercase text-justify print:text-[20px]/[20px] print:normal-case">
                         {introText.split(" ").flatMap((word, i) => [
                             <span key={`w-${i}`} className="inline-block overflow-hidden align-bottom print:overflow-visible">
                                 <span className="reveal-text inline-block">{word}</span>

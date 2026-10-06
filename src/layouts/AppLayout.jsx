@@ -9,7 +9,7 @@ export default function AppLayout() {
     const { cursorRef } = useAppContext();
 
     return (
-        <div className="bg-zinc-950 text-stone-200 font-zalando font-stretch-[117.5%] leading-none relative min-h-svh p-4 print:bg-white print:text-black">
+        <div className="bg-zinc-950 text-stone-200 font-zalando font-stretch-[117.5%] leading-none relative min-h-svh overflow-x-clip p-4 print:bg-white print:text-black">
 
             <div ref={cursorRef} className="fixed w-3 h-3 bg-zinc-200 pointer-events-none z-50 max-md:hidden print:hidden"></div>
 
