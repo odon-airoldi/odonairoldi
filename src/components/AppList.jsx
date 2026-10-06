@@ -35,7 +35,7 @@ export default function AppList({ list }) {
                 list.map((item) => (
                     <li key={item.id} className="font-extralight">
                         <span className="inline-block reveal-shift">{item.title}</span>
-                        <ul className="ul-">
+                        <ul className="ul">
                             {
                                 item.items.map((voce) => (
                                     typeof voce === "string" ? (
@@ -43,7 +43,7 @@ export default function AppList({ list }) {
                                     ) : (
                                         <li key={voce.id}>
                                             <button className="cursor-pointer" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>{voce.title}</button>
-                                            {openId === voce.id && voce.url &&
+                                            {/* {openId === voce.id && voce.url &&
                                                 <div className="pt-2 pb-8 w-full">
                                                     <Link to={voce.url} target="_blank" className="text-[10px] xl:text-xs block">
                                                         {voce.description}
@@ -63,7 +63,7 @@ export default function AppList({ list }) {
                                                     </ul>
                                                     <div className="drag-proxy hidden" ref={dragProxyRef}></div>
                                                 </div>, document.body)
-                                            }
+                                            } */}
                                         </li>
                                     )
                                 ))
