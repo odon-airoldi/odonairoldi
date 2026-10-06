@@ -110,7 +110,7 @@ const work = [
             },
             {
                 id: 5,
-                title: "essense-magazine.com",
+                title: "essense-mag.com",
                 description: `
                 Portale editoriale su WordPress con tema custom sviluppato da zero. Ho implementato i template per articoli, categorie e archivi secondo la template hierarchy, ottimizzando la presentazione dei contenuti e l'integrazione con il flusso editoriale del CMS.
                 `,
@@ -118,7 +118,7 @@ const work = [
             },
             {
                 id: 6,
-                title: "studiofotograficolops.it",
+                title: "studiolops.it",
                 description: `
                 Sito per uno studio fotografico su WordPress con tema custom sviluppato da zero. Ho realizzato template dedicati alla presentazione di gallerie e contenuti visivi, con layout responsive e gestione delle immagini integrata nel CMS.
                 `,
