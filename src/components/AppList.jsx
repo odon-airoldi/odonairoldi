@@ -34,7 +34,7 @@ export default function AppList({ list }) {
             {
                 list.map((item) => (
                     <li key={item.id} className="font-extralight">
-                        <span className="inline-block reveal-shift_">{item.title}</span>
+                        <span className="inline-block reveal-shift">{item.title}</span>
                         <ul className="ul">
                             {
                                 item.items.map((voce) => (
