@@ -128,7 +128,7 @@ export default function CurriculumPage() {
                 </div>
 
                 <div className="col-span-12 print:col-span-6 print:col-start-5">
-                    <p className="text-[clamp(1.5rem,3.125vw,2.5rem)] font-[450] uppercase text-justify print:text-[20px]/[20px] print:normal-case">
+                    <p className="text-[clamp(1rem,3.125vw,2.5rem)] font-[450] uppercase text-justify print:text-[20px]/[20px] print:normal-case">
                         {introText.split(" ").flatMap((word, i) => [
                             <span key={`w-${i}`} className="inline-block overflow-hidden align-bottom print:overflow-visible">
                                 <span className="reveal-text inline-block">{word}</span>
