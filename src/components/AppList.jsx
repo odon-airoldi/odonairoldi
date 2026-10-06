@@ -35,7 +35,7 @@ export default function AppList({ list }) {
                 list.map((item) => (
                     <li key={item.id} className="font-extralight">
                         <span className="inline-block reveal-shift">{item.title}</span>
-                        <ul className="ul">
+                        <ul className="ul-">
                             {
                                 item.items.map((voce) => (
                                     typeof voce === "string" ? (

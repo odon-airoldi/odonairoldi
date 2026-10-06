@@ -45,7 +45,7 @@ export default function AppIntro({ onDone }) {
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className="fixed inset-0 z-50 bg-zinc-950 text-zinc-200 cursor-none max-md:hidden">
+        <div ref={containerRef} className="fixed inset-0 z-50 bg-zinc-950 text-zinc-200 cursor-none">
             <div ref={cursorRef} className="text-2xl font-extralight font-zalando font-stretch-expanded pointer-events-none">
                 <span ref={counterRef}>0</span>%
             </div>
