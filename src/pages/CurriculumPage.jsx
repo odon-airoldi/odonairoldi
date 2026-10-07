@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
-import { setElement, toElement } from "../utils/gsap"
+import { setElement, toElement, setRevealText, toRevealText } from "../utils/gsap"
 import { stack, formazione, esperienza, work } from "../data/data"
 import AppList from "../components/AppList";
 
@@ -31,6 +31,7 @@ export default function CurriculumPage() {
         // della splash, così quando l'animazione parte non c'è nessun salto
         // verso quella posizione
         setElement();
+        setRevealText();
 
 
         // finché la splash è a schermo non c'è motivo di far partire nulla:
@@ -43,6 +44,7 @@ export default function CurriculumPage() {
         if (showSplash) return;
 
         toElement();
+        toRevealText();
     }, { scope: pageRef, dependencies: [showSplash] });
 
 
@@ -106,7 +108,18 @@ export default function CurriculumPage() {
 
             <div className="grid grid-cols-12 gap-y-4 print:grid-cols-10 print:-translate-y-1/2">
 
-                <div className="col-span-6 lg:col-span-3 print:hidden">
+                <div className="col-span-12 print:col-span-6 print:col-start-5">
+                    <p className="text-base sm:text-[3.125vw] font-extralight sm:font-[350] leading-none tracking-wide uppercase text-center print:text-[20px]/[20px] print:normal-case">
+                        {introText.split(" ").flatMap((word, i) => [
+                            <span key={`w-${i}`} className="inline-block overflow-hidden align-bottom print:overflow-visible">
+                                <span className="reveal-text inline-block">{word}</span>
+                            </span>,
+                            " ",
+                        ])}
+                    </p>
+                </div>
+
+                <div className="col-span-6 lg:col-span-3 max-lg:hidden print:hidden">
                     <h3 className="font-extralight tracking-wide uppercase print:text-6xl print:font-medium"><Link to="/">Odon Airoldi</Link></h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
@@ -115,8 +128,8 @@ export default function CurriculumPage() {
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
                     <h3 className="font-extralight tracking-wide uppercase">17 12 87</h3>
                 </div>
-                <div className="col-span-6 lg:col-span-2">
-                    <button className="font-extralight tracking-wide uppercase cursor-pointer block max-lg:ms-auto" to="/cv">Get CV</button>
+                <div className="col-span-12 lg:col-span-2">
+                    <button className="font-extralight tracking-wide uppercase cursor-pointer block max-lg:ms-auto" to="/cv">Get CV pdf</button>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
                     <button className="font-extralight tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
@@ -125,17 +138,6 @@ export default function CurriculumPage() {
                 </div>
                 <div className="lg:col-span-1 max-lg:hidden print:hidden print:hidden">
                     <h3 className="font-extralight tracking-wide uppercase">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</h3>
-                </div>
-
-                <div className="col-span-12 print:col-span-6 print:col-start-5">
-                    <p className="text-[clamp(1.5rem,3.125vw,2.5rem)] font-[450] uppercase text-justify print:text-[20px]/[20px] print:normal-case">
-                        {introText.split(" ").flatMap((word, i) => [
-                            <span key={`w-${i}`} className="inline-block overflow-hidden align-bottom print:overflow-visible">
-                                <span className="reveal-text inline-block">{word}</span>
-                            </span>,
-                            " ",
-                        ])}
-                    </p>
                 </div>
 
             </div>

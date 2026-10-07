@@ -21,6 +21,13 @@ gsap.registerPlugin(ScrollTrigger, Draggable);
 export function setElement() {
     gsap.set(".reveal-shift", { x: 0 });
     gsap.set(".ul", { x: 16 });
+}
+
+// nasconde subito le parole .reveal-text sotto la propria riga. Separata da
+// setElement perché non tutti hanno entrambe le cose: AppHeader ha solo il
+// testo, IndexPage solo .reveal-shift/.ul — e GSAP avvisa in console per i
+// selettori che non trovano nessun elemento
+export function setRevealText() {
     gsap.set(".reveal-text", { y: "100%", opacity: 0 });
 }
 
@@ -48,6 +55,10 @@ export function toElement() {
         });
     });
 
+}
+
+// fa risalire le parole .reveal-text nella loro posizione, una dopo l'altra
+export function toRevealText() {
     gsap.to(".reveal-text", {
         y: "0%",
         opacity: 1,
@@ -55,7 +66,6 @@ export function toElement() {
         ease: "power4.out",
         stagger: 0.1
     });
-
 }
 
 // posiziona ogni elemento in base alla propria distanza (in "elementi", non
