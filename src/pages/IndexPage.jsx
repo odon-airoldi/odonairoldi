@@ -74,14 +74,16 @@ export default function IndexPage() {
 
         <div ref={pageRef}>
 
-            <div className="grid grid-cols-12 gap-y-4">
-                <div className="col-span-12">
-                    <div className="text-[10vw] sm:text-[7.5vw]   leading-[.8] font-[100] sm:font-[450] tracking-tighter sm:uppercase">
-                        <span className="flex sm:justify-between"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></span> <span className="flex sm:justify-between"><span className="reveal-text" >fullstack</span> <span className="reveal-text">developer</span></span> <span className="flex sm:justify-between"><span className="reveal-text">from</span> <span className="reveal-text">graphic</span> <span className="reveal-text">design</span></span>
+            <div className="grid grid-cols-12 sm:gap-y-4">
+                <div className="col-span-12 max-sm:hidden-">
+                    <div className="text-[6vw] sm:text-[7.5vw] sm:leading-[.8] font-[200] sm:font-[450] tracking-tighter uppercase">
+                        <span className="flex justify-between"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></span>
+                        <span className="flex justify-between"><span className="reveal-text" >fullstack</span> <span className="reveal-text">developer</span></span>
+                        <span className="flex justify-between"><span><span className="reveal-text">from</span> <span className="reveal-text">graphic</span></span> <span className="reveal-text">design</span></span>
                     </div>
                 </div>
-                <div className="col-span-6 sm:col-span-4 md:col-span-4 lg:col-span-3">
-                    <h1 className="font-extralight tracking-wide uppercase"><Link to="/">Odon Airoldi</Link></h1>
+                <div className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-3 max-sm:hidden">
+                    <h1 className="font-extralight tracking-wide uppercase"><Link className="block" to="/">Odon Airoldi</Link></h1>
                 </div>
                 <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden">
                     <h3 className="font-extralight tracking-wide uppercase mb-4">Stack</h3>
@@ -91,8 +93,8 @@ export default function IndexPage() {
                     <h3 className="font-extralight tracking-wide uppercase mb-4">Work</h3>
                     <AppList list={work} />
                 </div>
-                <div className="col-span-6 sm:col-span-2">
-                    <h3 className="font-extralight tracking-wide uppercase max-sm:text-right"><Link className="" to="/cv">CV</Link></h3>
+                <div className="col-span-12 sm:col-span-2">
+                    <h3 className="font-extralight tracking-wide uppercase max-sm:text-right max-sm:text-[6vw]"><Link className="" to="/cv">CV</Link></h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden">
                     <button className="font-extralight tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
