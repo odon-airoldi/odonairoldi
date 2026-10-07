@@ -103,8 +103,8 @@ export default function CurriculumPage() {
                     </h3>
                 </div>
                 <div className="col-span-12 lg:col-span-2">
-                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block max-lg:text-justify max-lg:text-justify-last max-lg:w-full" to="/cv">
-                        <span className="word-reveal block">Get CV pdf</span>
+                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block max-lg:w-full" to="/cv">
+                        <span className="word-reveal max-sm:flex max-sm:justify-between"><span>Get</span> <span>CV</span> <span>pdf</span></span>
                     </button>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">

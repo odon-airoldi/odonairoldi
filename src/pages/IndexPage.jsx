@@ -36,38 +36,36 @@ export default function IndexPage() {
 
             <div className="grid grid-cols-12 sm:gap-y-4">
                 <div className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-3 max-sm:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden">
+                    <div className="font-extralight leading-none tracking-wide uppercase overflow-hidden">
                         <span className="word-reveal block">Odon Airoldi</span>
-                    </h3>
+                    </div>
                 </div>
                 <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 overflow-hidden">
+                    <div className="font-extralight leading-none tracking-wide uppercase overflow-hidden mb-4">
                         <span className="word-reveal block">Stack</span>
-                    </h3>
+                    </div>
                     <AppList list={stack} />
                 </div>
                 <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 overflow-hidden">
+                    <div className="font-extralight leading-none tracking-wide uppercase overflow-hidden mb-4">
                         <span className="word-reveal block">Work</span>
-                    </h3>
+                    </div>
                     <AppList list={work} />
                 </div>
                 <div className="col-span-12 sm:col-span-2">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase">
-                        <Link className="overflow-hidden max-sm:flex max-sm:justify-between max-sm:text-[6vw]" to="/cv">
-                            <span className="sm:hidden word-reveal">MY</span> <span className="word-reveal">CV</span>
-                        </Link>
-                    </h3>
+                    <Link className="font-extralight max-sm:text-[6vw] leading-none tracking-wide uppercase overflow-hidden" to="/cv">
+                        <span className="word-reveal max-sm:flex max-sm:justify-between"><span className="sm:hidden">MY</span><span>CV</span></span>
+                    </Link>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden">
-                    <button className="font-extralight leading-none tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
+                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block" type="button" onClick={handleCopyEmail}>
                         <span className="word-reveal block">{copied ? "Email copied" : "Email me"}</span>
                     </button>
                 </div>
                 <div className="lg:col-span-1 max-lg:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase">
+                    <div className="font-extralight leading-none tracking-wide uppercase">
                         <span className="word-reveal block">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</span>
-                    </h3>
+                    </div>
                 </div>
             </div>
         </div>
