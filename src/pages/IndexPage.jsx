@@ -75,12 +75,12 @@ export default function IndexPage() {
         <div ref={pageRef}>
 
             <div className="grid grid-cols-12 sm:gap-y-4">
-                <div className="col-span-12 max-sm:hidden-">
+                <div className="col-span-12">
                     <div className="text-[6vw] sm:text-[7.5vw] sm:leading-[.8] font-extralight sm:font-[450] tracking-tighter uppercase">
-                        <span className="flex justify-between"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></span>
-                        <span className="flex justify-between"><span className="reveal-text" >fullstack</span> <span className="reveal-text">developer</span></span>
-                        <span className="flex justify-between"><span><span className="reveal-text">from</span> <span className="reveal-text">graphic</span></span> <span className="reveal-text">design</span></span>
-                        <Link className="flex justify-between sm:hidden" to="/cv"><span className="reveal-text">My</span><span className="reveal-text">CV</span></Link>
+                        <span className="flex justify-between overflow-hidden"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></span>
+                        <span className="flex justify-between overflow-hidden"><span className="reveal-text">fullstack</span> <span className="reveal-text">developer</span></span>
+                        <span className="flex justify-between overflow-hidden gap-x-[.25em]"><span className="reveal-text">from</span> <span className="reveal-text">graphic</span> <span className="reveal-text ms-auto">design</span></span>
+                        <Link className="flex justify-between overflow-hidden sm:hidden" to="/cv"><span className="reveal-text">My</span><span className="reveal-text">CV</span></Link>
                     </div>
                 </div>
                 <div className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-3 max-sm:hidden">

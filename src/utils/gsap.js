@@ -53,7 +53,7 @@ export function toElement() {
         opacity: 1,
         duration: 1,
         ease: "power4.out",
-        stagger: (i) => Math.floor(i / 4) * 0.1
+        stagger: 0.1
     });
 
 }
