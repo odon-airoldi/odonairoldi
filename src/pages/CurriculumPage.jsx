@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
-import { setElement, toElement, setRevealText, toRevealText } from "../utils/gsap"
+import { setElement, toElement } from "../utils/gsap"
 import { stack, formazione, esperienza, work } from "../data/data"
 import AppList from "../components/AppList";
 
@@ -31,7 +31,6 @@ export default function CurriculumPage() {
         // della splash, così quando l'animazione parte non c'è nessun salto
         // verso quella posizione
         setElement();
-        setRevealText();
 
 
         // finché la splash è a schermo non c'è motivo di far partire nulla:
@@ -44,7 +43,6 @@ export default function CurriculumPage() {
         if (showSplash) return;
 
         toElement();
-        toRevealText();
     }, { scope: pageRef, dependencies: [showSplash] });
 
 
@@ -74,7 +72,7 @@ export default function CurriculumPage() {
     }, [apiKey])
 
     return (
-        <div ref={pageRef} className="print:relative print:min-h-[calc(29.7cm-32px)]">
+        <div ref={pageRef} className="pt-4 print:relative print:min-h-[calc(29.7cm-32px)]">
 
             <div className="hidden print:block">
                 <div className="grid grid-cols-10">
@@ -112,7 +110,7 @@ export default function CurriculumPage() {
                     <p className="text-base sm:text-[3.125vw] font-extralight flex flex-wrap justify-center gap-y-[.125em] gap-x-[.75em] uppercase leading-[.75em] tracking-wide sm:tracking-tighter print:text-[20px]/[20px] print:normal-case">
                         {introText.split(" ").flatMap((word, i) => [
                             <span key={`w-${i}`} className="overflow-hidden p-[.075em] print:overflow-visible">
-                                <span className="reveal-text block">{word}</span>
+                                <span className="word-reveal block">{word}</span>
                             </span>,
                             " ",
                         ])}
@@ -120,24 +118,34 @@ export default function CurriculumPage() {
                 </div>
 
                 <div className="col-span-6 lg:col-span-3 max-lg:hidden print:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase print:text-6xl print:font-medium"><Link to="/">Odon Airoldi</Link></h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden print:text-6xl print:font-medium">
+                        <span className="word-reveal block">Odon Airoldi</span>
+                    </h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase print:text-right">23900</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden print:text-right">
+                        <span className="word-reveal block">23900</span>
+                    </h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase">17 12 87</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden">
+                        <span className="word-reveal block">17 12 87</span>
+                    </h3>
                 </div>
                 <div className="col-span-12 lg:col-span-2">
-                    <button className="font-extralight leading-none tracking-wide uppercase cursor-pointer block max-lg:text-justify max-lg:text-justify-last max-lg:w-full" to="/cv">Get CV pdf</button>
+                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block max-lg:text-justify max-lg:text-justify-last max-lg:w-full" to="/cv">
+                        <span className="word-reveal block">Get CV pdf</span>
+                    </button>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <button className="font-extralight leading-none tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
-                        {copied ? "Email copied" : "Email me"}
+                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block" type="button" onClick={handleCopyEmail}>
+                        <span className="word-reveal block">{copied ? "Email copied" : "Email me"}</span>
                     </button>
                 </div>
                 <div className="lg:col-span-1 max-lg:hidden print:hidden print:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</h3>
+                    <h3 className="font-extralight tracking-wide uppercase overflow-hidden">
+                        <span className="word-reveal block">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</span>
+                    </h3>
                 </div>
 
             </div>

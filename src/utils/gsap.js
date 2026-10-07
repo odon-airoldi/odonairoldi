@@ -23,12 +23,12 @@ export function setElement() {
     gsap.set(".ul", { x: 16 });
 }
 
-// nasconde subito le parole .reveal-text sotto la propria riga. Separata da
+// nasconde subito le parole .word-reveal sotto la propria riga. Separata da
 // setElement perché non tutti hanno entrambe le cose: AppHeader ha solo il
 // testo, IndexPage solo .reveal-shift/.ul — e GSAP avvisa in console per i
 // selettori che non trovano nessun elemento
-export function setRevealText() {
-    gsap.set(".reveal-text", { y: "100%", opacity: 0 });
+export function setWordReveal() {
+    gsap.set(".word-reveal", { y: "100%", opacity: 0 });
 }
 
 // anima .reveal-shift e .ul verso la loro posizione finale (x: 0) quando
@@ -57,14 +57,14 @@ export function toElement() {
 
 }
 
-// fa risalire le parole .reveal-text nella loro posizione, una dopo l'altra
-export function toRevealText() {
-    gsap.to(".reveal-text", {
+// fa risalire le parole .word-reveal nella loro posizione, una dopo l'altra
+export function toWordReveal() {
+    gsap.to(".word-reveal", {
         y: "0%",
         opacity: 1,
         duration: 1,
         ease: "power4.out",
-        stagger: 0.1
+        stagger: { amount: 2 }
     });
 }
 

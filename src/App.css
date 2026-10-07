@@ -43,7 +43,7 @@
         transform: translateX(0) !important;
     }
 
-    .reveal-text {
+    .word-reveal {
         transform: translateY(0) !important;
         opacity: 1 !important;
     }
