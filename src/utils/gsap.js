@@ -23,12 +23,22 @@ export function setElement() {
     gsap.set(".ul", { x: 16 });
 }
 
-// nasconde subito le parole .word-reveal sotto la propria riga. Separata da
+// le .word-reveal disegnate in questo momento: una parola nascosta a questo
+// breakpoint (es. sm:hidden, o dentro un genitore max-sm:hidden) occuperebbe
+// comunque un posto nello stagger, ritardando quelle dopo. getClientRects è
+// vuoto per ogni elemento non disegnato, anche quando display:none è su un
+// antenato. Le nascoste non vengono mai toccate da GSAP, quindi se un resize
+// le mostra appaiono già al loro posto
+function visibleWords() {
+    return gsap.utils.toArray(".word-reveal").filter((el) => el.getClientRects().length);
+}
+
+// nasconde subito le parole visibili sotto la propria riga. Separata da
 // setElement perché non tutti hanno entrambe le cose: AppHeader ha solo il
 // testo, IndexPage solo .reveal-shift/.ul — e GSAP avvisa in console per i
 // selettori che non trovano nessun elemento
 export function setWordReveal() {
-    gsap.set(".word-reveal", { y: "100%", opacity: 0 });
+    gsap.set(visibleWords(), { y: "100%", opacity: 0 });
 }
 
 // anima .reveal-shift e .ul verso la loro posizione finale (x: 0) quando
@@ -57,14 +67,14 @@ export function toElement() {
 
 }
 
-// fa risalire le parole .word-reveal nella loro posizione, una dopo l'altra
+// fa risalire le parole visibili nella loro posizione, una dopo l'altra
 export function toWordReveal() {
-    gsap.to(".word-reveal", {
+    gsap.to(visibleWords(), {
         y: "0%",
         opacity: 1,
         duration: 1,
         ease: "power4.out",
-        stagger: { amount: 2 }
+        stagger: { amount: 1.2 }
     });
 }
 
