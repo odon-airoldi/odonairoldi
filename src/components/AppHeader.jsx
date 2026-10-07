@@ -37,7 +37,7 @@ export default function AppHeader() {
         <header ref={headerRef} className="mb-4">
             <div className="grid grid-cols-12">
                 <div className="col-span-12">
-                    <Link to="/" className="text-[6vw] sm:text-[7.5vw] sm:leading-[.8] font-extralight sm:font-[450] tracking-tighter uppercase">
+                    <Link to="/" className="text-[6vw] sm:text-[7.5vw] leading-none sm:leading-[.8] font-extralight sm:font-[450] tracking-tighter uppercase">
                         <h1 className="flex justify-between overflow-hidden"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></h1>
                         {pathname === "/" &&
                             <>

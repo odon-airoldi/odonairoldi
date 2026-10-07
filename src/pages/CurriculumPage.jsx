@@ -109,10 +109,10 @@ export default function CurriculumPage() {
             <div className="grid grid-cols-12 gap-y-4 print:grid-cols-10 print:-translate-y-1/2">
 
                 <div className="col-span-12 print:col-span-6 print:col-start-5">
-                    <p className="text-base sm:text-[3.125vw] font-extralight sm:font-[350] leading-none tracking-wide uppercase text-center print:text-[20px]/[20px] print:normal-case">
+                    <p className="text-base sm:text-[3.125vw] font-extralight flex flex-wrap justify-center gap-y-[.125em] gap-x-[.75em] uppercase leading-[.75em] tracking-wide sm:tracking-tighter print:text-[20px]/[20px] print:normal-case">
                         {introText.split(" ").flatMap((word, i) => [
-                            <span key={`w-${i}`} className="inline-block overflow-hidden align-bottom print:overflow-visible">
-                                <span className="reveal-text inline-block">{word}</span>
+                            <span key={`w-${i}`} className="overflow-hidden p-[.075em] print:overflow-visible">
+                                <span className="reveal-text block">{word}</span>
                             </span>,
                             " ",
                         ])}
