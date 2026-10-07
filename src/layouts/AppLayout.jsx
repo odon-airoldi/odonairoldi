@@ -35,7 +35,7 @@ export default function AppLayout() {
     }, { scope: layoutRef, dependencies: [showSplash, pathname] });
 
     return (
-        <div ref={layoutRef} className="bg-zinc-950 text-stone-200 font-zalando font-stretch-[117.5%] relative min-h-svh p-2 sm:p-4 print:bg-white print:text-black">
+        <div ref={layoutRef} className="bg-zinc-950 text-stone-200 font-zalando font-stretch-[117.5%] relative overflow-hidden min-h-svh p-2 sm:p-4 print:bg-white print:text-black">
 
             <div ref={cursorRef} className="fixed w-3 h-3 bg-zinc-200 pointer-events-none z-50 max-md:hidden print:hidden"></div>
 

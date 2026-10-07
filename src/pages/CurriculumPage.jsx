@@ -156,7 +156,7 @@ export default function CurriculumPage() {
                     <AppList list={formazione} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-3 print:col-span-3">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case hidden">Esperienza</h3>
                     <AppList list={esperienza} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-start-9">

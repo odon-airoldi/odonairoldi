@@ -52,7 +52,7 @@ export default function AppList({ list }) {
                                                 </div>
                                             }
                                             {openId === voce.id && voce.gallery && createPortal(
-                                                <div className="fixed z-50 inset-0 flex items-center justify-center overflow-hidden">
+                                                <div className="fixed z-50 inset-0 flex items-center justify-center overflow-hidden border border-orange-500">
                                                     <div className="absolute inset-0 z-51" onClick={() => setOpenId(null)}></div>
                                                     <ul className="grid place-items-center z-52" ref={itemsRef}>
                                                         {voce.gallery.map((img) => (
