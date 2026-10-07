@@ -120,19 +120,19 @@ export default function CurriculumPage() {
                 </div>
 
                 <div className="col-span-6 lg:col-span-3 max-lg:hidden print:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase print:text-6xl print:font-medium"><Link to="/">Odon Airoldi</Link></h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase print:text-6xl print:font-medium"><Link to="/">Odon Airoldi</Link></h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase print:text-right">23900</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase print:text-right">23900</h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase">17 12 87</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase">17 12 87</h3>
                 </div>
                 <div className="col-span-12 lg:col-span-2">
-                    <button className="font-extralight tracking-wide uppercase cursor-pointer block max-lg:ms-auto" to="/cv">Get CV pdf</button>
+                    <button className="font-extralight leading-none tracking-wide uppercase cursor-pointer block max-lg:text-justify max-lg:text-justify-last max-lg:w-full" to="/cv">Get CV pdf</button>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <button className="font-extralight tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
+                    <button className="font-extralight leading-none tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
                         {copied ? "Email copied" : "Email me"}
                     </button>
                 </div>
@@ -144,19 +144,19 @@ export default function CurriculumPage() {
             <div className="grid grid-cols-12 gap-y-24 py-24 print:grid-cols-10 print:-translate-y-1/2">
 
                 <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3">
-                    <h3 className="font-extralight tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
                     <AppList list={formazione} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-3 print:col-span-3">
-                    <h3 className="font-extralight tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</h3>
                     <AppList list={esperienza} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-start-9">
-                    <h3 className="font-extralight tracking-wide uppercase mb-4 print:text-sm print:normal-case">Stack</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Stack</h3>
                     <AppList list={stack} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-3 print:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase mb-4">Work</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4">Work</h3>
                     <AppList list={work} />
                 </div>
 

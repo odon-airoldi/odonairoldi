@@ -14,9 +14,6 @@ export default function AppFooter() {
                     <AppLogo />
                 </div>
             </div>
-
-            {/* { pathname === "/" && } */}
-
         </footer >
     )
 }

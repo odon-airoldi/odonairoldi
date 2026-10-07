@@ -34,20 +34,20 @@ export default function AppHeader() {
 
     return (
 
-        <header ref={headerRef} className="mb-2">
+        <header ref={headerRef} className="mb-4">
             <div className="grid grid-cols-12">
                 <div className="col-span-12">
-                    <div className="text-[6vw] sm:text-[7.5vw] sm:leading-[.8] font-extralight sm:font-[450] tracking-tighter uppercase">
-                        <span className="flex justify-between overflow-hidden"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></span>
+                    <Link to="/" className="text-[6vw] sm:text-[7.5vw] sm:leading-[.8] font-extralight sm:font-[450] tracking-tighter uppercase">
+                        <h1 className="flex justify-between overflow-hidden"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></h1>
                         {pathname === "/" &&
                             <>
-                                <span className="flex justify-between overflow-hidden"><span className="reveal-text">fullstack</span> <span className="reveal-text">developer</span></span>
-                                <span className="flex justify-between overflow-hidden gap-x-[.25em]"><span className="reveal-text">from</span> <span className="reveal-text">graphic</span> <span className="reveal-text ms-auto">design</span></span>
+                                <h2 className="flex justify-between overflow-hidden"><span className="reveal-text">fullstack</span> <span className="reveal-text">developer</span></h2>
+                                <h3 className="flex justify-between overflow-hidden gap-x-[.25em]"><span className="reveal-text">from</span> <span className="reveal-text">graphic</span> <span className="reveal-text ms-auto">design</span></h3>
                                 <Link className="flex justify-between overflow-hidden sm:hidden" to="/cv"><span className="reveal-text">My</span><span className="reveal-text">CV</span></Link>
                             </>
                         }
 
-                    </div>
+                    </Link>
                 </div>
             </div>
         </header>

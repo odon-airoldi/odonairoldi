@@ -71,26 +71,26 @@ export default function IndexPage() {
 
             <div className="grid grid-cols-12 sm:gap-y-4">
                 <div className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-3 max-sm:hidden">
-                    <h1 className="font-extralight tracking-wide uppercase"><Link className="block" to="/">Odon Airoldi</Link></h1>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase"><Link className="block" to="/">Odon Airoldi</Link></h3>
                 </div>
                 <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase mb-4">Stack</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4">Stack</h3>
                     <AppList list={stack} />
                 </div>
                 <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase mb-4">Work</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4">Work</h3>
                     <AppList list={work} />
                 </div>
                 <div className="col-span-12 sm:col-span-2">
-                    <h3 className="font-extralight tracking-wide uppercase max-sm:hidden"><Link className="" to="/cv">CV</Link></h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase max-sm:hidden"><Link className="" to="/cv">CV</Link></h3>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden">
-                    <button className="font-extralight tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
+                    <button className="font-extralight leading-none tracking-wide uppercase cursor-pointer block" type="button" onClick={handleCopyEmail}>
                         {copied ? "Email copied" : "Email me"}
                     </button>
                 </div>
                 <div className="lg:col-span-1 max-lg:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</h3>
                 </div>
             </div>
         </div >
