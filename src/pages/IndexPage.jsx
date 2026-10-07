@@ -75,15 +75,15 @@ export default function IndexPage() {
         <div ref={pageRef}>
 
             <div className="grid grid-cols-12 gap-y-4">
-                <div className="col-span-12 max-sm:hidden">
-                    <div className="text-[clamp(3rem,7.5vw,8rem)]/[.8] uppercase font-[450] tracking-tighter">
-                        <h1 className="overflow-hidden flex flex-wrap justify-between"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></h1>
-                        <h2 className="overflow-hidden flex flex-wrap justify-between"><span className="reveal-text" >fullstack</span> <span className="reveal-text">developer</span></h2>
-                        <h3 className="overflow-hidden flex flex-wrap justify-between"><span className="reveal-text">from</span> <span className="reveal-text">graphic</span> <span className="reveal-text">design</span></h3>
+                <div className="col-span-12 max-sm:hidden____">
+                    <div className="text-[7.5vw] leading-[.8] font-[100] sm:font-[450] tracking-tighter uppercase">
+                        <span className="flex justify-between"><span className="reveal-text">Odon</span> <span className="reveal-text">Airoldi</span></span>
+                        <span className="flex justify-between"><span className="reveal-text" >fullstack</span> <span className="reveal-text">developer</span></span>
+                        <span className="flex justify-between"><span className="reveal-text">from</span> <span className="reveal-text">graphic</span> <span className="reveal-text">design</span></span>
                     </div>
                 </div>
                 <div className="col-span-6 sm:col-span-4 md:col-span-4 lg:col-span-3">
-                    <h3 className="font-extralight tracking-wide uppercase"><Link to="/">Odon Airoldi</Link></h3>
+                    <h1 className="font-extralight tracking-wide uppercase"><Link to="/">Odon Airoldi</Link></h1>
                 </div>
                 <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden">
                     <h3 className="font-extralight tracking-wide uppercase mb-4">Stack</h3>
