@@ -1,44 +1,9 @@
 import { Link } from "react-router-dom"
-import { gsap } from "gsap"
-import { useGSAP } from "@gsap/react"
-import { useRef, useState, useEffect } from "react"
-import { useAppContext } from "../contexts/AppContext"
-import { setElement, toElement } from "../utils/gsap"
+import { useState, useEffect } from "react"
 import { stack, work } from "../data/data"
 import AppList from "../components/AppList"
 
-
-gsap.registerPlugin(useGSAP)
-
-
 export default function IndexPage() {
-    // deve avvolgere tutta la pagina, non solo il testo hero: startRevealShift
-    // cerca .reveal-shift/.ul con un selettore testuale, e lo scope di useGSAP
-    // limita quella ricerca ai soli discendenti del nodo — le liste Stack/Work
-    // sono fuori dal blocco del testo hero, altrimenti resterebbero irraggiungibili
-    const pageRef = useRef(null);
-    const { showSplash } = useAppContext();
-
-    useGSAP(() => {
-
-        // nasconde subito Stack/Work nella loro posizione di partenza — vedi
-        // hideRevealShift — per tutta la durata della splash, così quando
-        // l'animazione parte non c'è nessun salto verso quella posizione
-        setElement();
-
-        // finché la splash è a schermo non c'è motivo di far partire nulla:
-        // Stack e Work sono già dentro il viewport iniziale (non serve scroll
-        // per vederle), quindi lo scrollTrigger di startRevealShift
-        // scatterebbe subito se creato ora, e l'animazione finirebbe
-        // (invisibile) dietro la splash stessa. Quando showSplash passa a
-        // false l'effetto riparte (dependencies) ed è quello il momento
-        // giusto per creare lo scrollTrigger e far partire il testo
-        if (showSplash) return;
-
-        toElement();
-    }, { scope: pageRef, dependencies: [showSplash] });
-
-
 
     const [copied, setCopied] = useState(false)
 
@@ -67,7 +32,7 @@ export default function IndexPage() {
 
     return (
 
-        <div ref={pageRef} className="sm:pt-4">
+        <div className="">
 
             <div className="grid grid-cols-12 sm:gap-y-4">
                 <div className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-3 max-sm:hidden">
@@ -105,6 +70,6 @@ export default function IndexPage() {
                     </h3>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }

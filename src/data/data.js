@@ -39,7 +39,7 @@ const formazione = [
     },
     {
         id: 4,
-        title: "Liceo Artistico M Rosso",
+        title: "Liceo Artistico",
         items: ["Architettura", "Lecco", "2002 2006"]
     },
 ]

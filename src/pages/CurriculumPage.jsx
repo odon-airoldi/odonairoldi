@@ -1,21 +1,12 @@
 
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAppContext } from "../contexts/AppContext";
-import { setElement, toElement } from "../utils/gsap"
 import { stack, formazione, esperienza, work } from "../data/data"
 import AppList from "../components/AppList";
-
-gsap.registerPlugin(useGSAP);
 
 const introText = "Formazione artistica ed esperienza nel graphic design sono all'origine del mio orientamento allo sviluppo web. Ho intrapreso questa direzione nel corso delle mie esperienze professionali, per poi consolidarla attraverso un percorso formativo fullstack. Metodo progettuale e sensibilità visiva accompagnano oggi il mio lavoro da sviluppatore.";
 
 export default function CurriculumPage() {
-
-    const pageRef = useRef(null);
-    const { showSplash } = useAppContext();
 
     // apre il pdf in una nuova scheda: essendo un pdf (non html), il
     // browser lo mostra nel proprio lettore pdf nativo invece di
@@ -24,27 +15,6 @@ export default function CurriculumPage() {
     const handleGetCv = () => {
         window.open("/cv.pdf", "_blank");
     };
-
-    useGSAP(() => {
-        // nasconde subito Formazione/Esperienza/Stack/Work nella loro
-        // posizione di partenza — vedi hideRevealShift — per tutta la durata
-        // della splash, così quando l'animazione parte non c'è nessun salto
-        // verso quella posizione
-        setElement();
-
-
-        // finché la splash è a schermo non c'è motivo di far partire nulla:
-        // se un reveal-shift si trovasse già dentro il viewport iniziale, lo
-        // scrollTrigger di startRevealShift scatterebbe subito se creato ora,
-        // e l'animazione finirebbe (invisibile) dietro la splash stessa.
-        // Quando showSplash passa a false l'effetto riparte (dependencies) ed
-        // è quello il momento giusto per creare lo scrollTrigger e far
-        // partire il testo
-        if (showSplash) return;
-
-        toElement();
-    }, { scope: pageRef, dependencies: [showSplash] });
-
 
     const [copied, setCopied] = useState(false)
 
@@ -72,7 +42,7 @@ export default function CurriculumPage() {
     }, [apiKey])
 
     return (
-        <div ref={pageRef} className="pt-4 print:relative print:min-h-[calc(29.7cm-32px)]">
+        <div className="print:relative print:min-h-[calc(29.7cm-32px)]">
 
             <div className="hidden print:block">
                 <div className="grid grid-cols-10">
@@ -169,7 +139,6 @@ export default function CurriculumPage() {
                 </div>
 
             </div>
-
 
             <div className="hidden print:block print:absolute print:bottom-0 print:inset-x-0">
                 <div className="font-medium text-[40px] text-justify text-justify-last tracking-tighter uppercase">

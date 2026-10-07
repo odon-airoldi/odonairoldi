@@ -17,10 +17,13 @@ gsap.registerPlugin(ScrollTrigger, Draggable);
 // cose insieme dentro startRevealShift (chiamata solo a splash finita),
 // l'elemento salterebbe dalla sua posizione naturale (0, mai stata nascosta)
 // a quella di partenza nel momento stesso in cui l'animazione dovrebbe solo
-// rivelarla — un salto visibile proprio mentre la splash sta sparendo
+// rivelarla — un salto visibile proprio mentre la splash sta sparendo.
+// toArray e non il selettore come stringa: lo scope è il layout, quindi
+// gira anche su pagine senza .reveal-shift/.ul, e con un array vuoto GSAP
+// non avvisa in console come fa per un selettore che non trova niente
 export function setElement() {
-    gsap.set(".reveal-shift", { x: 0 });
-    gsap.set(".ul", { x: 16 });
+    gsap.set(gsap.utils.toArray(".reveal-shift"), { x: 0 });
+    gsap.set(gsap.utils.toArray(".ul"), { x: 16 });
 }
 
 // le .word-reveal disegnate in questo momento: una parola nascosta a questo
@@ -33,10 +36,7 @@ function visibleWords() {
     return gsap.utils.toArray(".word-reveal").filter((el) => el.getClientRects().length);
 }
 
-// nasconde subito le parole visibili sotto la propria riga. Separata da
-// setElement perché non tutti hanno entrambe le cose: AppHeader ha solo il
-// testo, IndexPage solo .reveal-shift/.ul — e GSAP avvisa in console per i
-// selettori che non trovano nessun elemento
+// nasconde subito le parole visibili sotto la propria riga
 export function setWordReveal() {
     gsap.set(visibleWords(), { y: "100%", opacity: 0 });
 }
