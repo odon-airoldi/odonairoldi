@@ -87,24 +87,24 @@ export default function CurriculumPage() {
                     </p>
                 </div>
 
-                <div className="col-span-6 lg:col-span-3 max-lg:hidden print:hidden">
+                <div className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-3 max-sm:hidden print:hidden">
                     <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden print:text-6xl print:font-medium">
                         <span className="word-reveal block">Odon Airoldi</span>
                     </h3>
                 </div>
-                <div className="lg:col-span-2 max-lg:hidden print:hidden">
+                <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden print:hidden">
                     <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden print:text-right">
                         <span className="word-reveal block">23900</span>
                     </h3>
                 </div>
-                <div className="lg:col-span-2 max-lg:hidden print:hidden">
+                <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden print:hidden">
                     <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden">
                         <span className="word-reveal block">17 12 87</span>
                     </h3>
                 </div>
-                <div className="col-span-12 lg:col-span-2">
-                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block max-lg:w-full" to="/cv">
-                        <span className="word-reveal max-sm:flex max-sm:justify-between"><span>Get</span> <span>CV</span> <span>pdf</span></span>
+                <div className="col-span-12 sm:col-span-2">
+                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block max-sm:w-full" to="/cv">
+                        <span className="word-reveal max-sm:flex max-sm:justify-between"><span>Get</span> <span>CV</span></span>
                     </button>
                 </div>
                 <div className="lg:col-span-2 max-lg:hidden print:hidden">
@@ -119,21 +119,21 @@ export default function CurriculumPage() {
                 </div>
 
             </div>
-            <div className="grid grid-cols-12 gap-y-24 py-24 print:grid-cols-10 print:-translate-y-1/2">
+            <div className="grid grid-cols-12 gap-y-24 sm:gap-x-2 xl:gap-x-4 py-24 print:grid-cols-10 print:-translate-y-1/2">
 
-                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
+                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3 border-t border-stone-200 pt-2">
+                    <h3 className="font-extralight- leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
                     <AppList list={formazione} />
                 </div>
-                <div className="col-span-6 col-start-7 md:col-span-3 print:col-span-3">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case hidden">Esperienza</h3>
+                <div className="col-span-6 col-start-7 md:col-span-4 print:col-span-3 border-t border-stone-200 pt-2">
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</h3>
                     <AppList list={esperienza} />
                 </div>
-                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-start-9">
+                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-start-9 border-t border-stone-200 pt-2">
                     <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Stack</h3>
                     <AppList list={stack} />
                 </div>
-                <div className="col-span-6 col-start-7 md:col-span-3 print:hidden">
+                <div className="col-span-6 col-start-7 md:col-span-4 print:hidden border-t border-stone-200 pt-2">
                     <h3 className="font-extralight leading-none tracking-wide uppercase mb-4">Work</h3>
                     <AppList list={work} />
                 </div>
