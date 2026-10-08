@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-
+import AppLogo from "./AppLogo";
 
 export default function AppHeader() {
 

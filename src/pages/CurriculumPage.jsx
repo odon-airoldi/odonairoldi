@@ -30,7 +30,7 @@ export default function CurriculumPage() {
     }
 
     return (
-        <div className="py-[6vw] print:relative print:min-h-[calc(29.7cm-32px)]">
+        <div className="py-[8vw] print:relative print:min-h-[calc(29.7cm-32px)]">
 
             <div className="hidden print:block">
                 <div className="grid grid-cols-10">
@@ -62,7 +62,7 @@ export default function CurriculumPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-12 gap-x-2 xl:gap-x-4 gap-y-[6vw] print:grid-cols-10 print:-translate-y-1/2">
+            <div className="grid grid-cols-12 gap-x-2 xl:gap-x-4 gap-y-[8vw] print:grid-cols-10 print:-translate-y-1/2">
 
                 <div className="col-span-12 print:col-span-6 print:col-start-5">
                     <p className="text-base sm:text-[3.125vw] font-extralight flex flex-wrap justify-between gap-y-[.125em] gap-x-[.75em] uppercase leading-[.75em] tracking-wide sm:tracking-tighter print:text-[20px]/[20px] print:normal-case">

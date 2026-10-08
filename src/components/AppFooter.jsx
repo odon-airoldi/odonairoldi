@@ -22,16 +22,21 @@ export default function AppFooter() {
     return (
 
         <footer>
-            <div className="p-2 sm:p-4 fixed bottom-0 left-0 max-lg:hidden print:hidden">
-                <div className="font-extralight leading-none tracking-wide uppercase overflow-hidden">
+            <div className="fixed bottom-2 sm:bottom-4 right-2 sm:right-4 print:hidden">
+                <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden">
                     <span className="word-reveal block">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</span>
                 </div>
             </div>
-            <div className={`p-2 sm:p-4 sm:fixed sm:bottom-0 sm:left-auto sm:right-0 ${pathname === "/" ? 'fixed bottom-0 left-0 right-0' : ''}`}>
-                <div className="w-full sm:w-24 xl:w-32">
+            <div className="fixed bottom-0 left-0 right-0 sm:right-auto p-2 sm:p-4">
+                <div className="w-full sm:w-24 lg:w-32">
                     <AppLogo />
                 </div>
             </div>
+            {/* <div className={`p-2 sm:p-4 sm:fixed sm:bottom-0 sm:left-0 sm:right-auto ${pathname === "/" ? 'fixed bottom-0 left-0 right-0' : ''}`}>
+                <div className="w-full sm:w-24 lg:w-32">
+                    <AppLogo />
+                </div>
+            </div> */}
         </footer >
     )
 }
