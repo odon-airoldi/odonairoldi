@@ -20,17 +20,17 @@ export default function AppList({ list }) {
     // itemsRef/dragProxyRef vivono dentro il portal, montati solo per la voce
     // aperta. useGSAP dipende da openId, quindi ad ogni apertura/chiusura/cambio la
     // gallery precedente viene ripulita (via la funzione di cleanup ritornata) e se
-    // ne crea una nuova
+    // ne crea una nuova. Lo swipe verso l'alto la chiude come il click sullo sfondo
     const itemsRef = useRef(null)
     const dragProxyRef = useRef(null)
 
     useGSAP(() => {
         if (!itemsRef.current) return
-        return createInfiniteGallery(itemsRef.current, dragProxyRef.current)
+        return createInfiniteGallery(itemsRef.current, dragProxyRef.current, () => setOpenId(null))
     }, { dependencies: [openId] })
 
     return (
-        <ul className="text-[.625rem] lg:text-xs xl:text-sm tracking-widest grid grid-rows-1 gap-y-[2vw]">
+        <ul className="text-[.625rem] lg:text-xs tracking-widest grid grid-rows-1 gap-y-[2vw]">
             {
                 list.map((item) => (
                     <li key={item.id} className="font-extralight leading-[1.5]">
@@ -44,13 +44,13 @@ export default function AppList({ list }) {
                                         <li key={voce.id}>
                                             <button className="cursor-pointer flex gap-1 items-center" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>
                                                 <span>{voce.title}</span>
-                                                <span className="relative w-[8px] h-[8px]">
-                                                    <span className="absolute top-[0px] left-[0px] w-[6px] h-[1px] bg-stone-200"></span>
-                                                    <span className="absolute top-[0px] left-[0px] w-[1px] h-[6px] bg-stone-200"></span>
-                                                    <span className="absolute top-[2px] left-[2px] w-[6px] h-[1px] bg-stone-200"></span>
-                                                    <span className="absolute top-[2px] left-[2px] w-[1px] h-[6px] bg-stone-200"></span>
-                                                    <span className="absolute top-[2px] left-[7px] w-[1px] h-[6px] bg-stone-200"></span>
-                                                    <span className="absolute top-[7px] left-[2px] w-[6px] h-[1px] bg-stone-200"></span>
+                                                <span className="relative w-2 h-2 mt-[1px]">
+                                                    <span className="absolute top-0 left-0 w-6/8 h-1/8 bg-stone-200"></span>
+                                                    <span className="absolute top-0 left-0 w-1/8 h-6/8 bg-stone-200"></span>
+                                                    <span className="absolute top-2/8 left-2/8 w-6/8 h-1/8 bg-stone-200"></span>
+                                                    <span className="absolute top-2/8 left-2/8 w-1/8 h-6/8 bg-stone-200"></span>
+                                                    <span className="absolute top-2/8 left-7/8 w-1/8 h-6/8 bg-stone-200"></span>
+                                                    <span className="absolute top-7/8 left-2/8 w-6/8 h-1/8 bg-stone-200"></span>
                                                 </span>
                                             </button>
                                             {openId === voce.id && voce.url &&
@@ -63,11 +63,11 @@ export default function AppList({ list }) {
                                             }
                                             {openId === voce.id && voce.gallery && createPortal(
                                                 <div className="fixed z-50 inset-0 flex items-center justify-center overflow-hidden">
-                                                    <div className="absolute inset-0 z-51" onClick={() => setOpenId(null)}></div>
+                                                    <div className="absolute inset-0 z-51 bg-zinc-950/75" onClick={() => setOpenId(null)}></div>
                                                     <ul className="grid place-items-center z-52" ref={itemsRef}>
                                                         {voce.gallery.map((img) => (
-                                                            <li key={img} className="col-start-1 row-start-1 px-1">
-                                                                <img src={img} draggable={false} className="pointer-events-none" />
+                                                            <li key={img} className="col-start-1 row-start-1 w-[100vw]">
+                                                                <img src={img} draggable={false} className="w-full h-auto pointer-events-none" />
                                                             </li>
                                                         ))}
                                                     </ul>

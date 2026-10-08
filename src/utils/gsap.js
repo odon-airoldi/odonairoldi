@@ -102,8 +102,10 @@ function layoutItems(items, position) {
 // Draggable trascinasse direttamente gli elementi, entrerebbe in conflitto
 // con xPercent, che layoutItems scrive già su di loro. Funziona con
 // qualunque numero di elementi (3, 6, ...), non c'è nessun valore hardcoded.
-// Ritorna una funzione di cleanup da chiamare alla chiusura della gallery
-export function createInfiniteGallery(itemsEl, dragProxyEl) {
+// Uno swipe verso l'alto chiude la gallery: onClose viene chiamata a fine
+// animazione d'uscita, così React smonta la gallery solo quando è già fuori
+// dallo schermo. Ritorna una funzione di cleanup da chiamare alla chiusura
+export function createInfiniteGallery(itemsEl, dragProxyEl, onClose) {
     const items = gsap.utils.toArray(itemsEl.children);
     const count = items.length;
 
@@ -111,12 +113,23 @@ export function createInfiniteGallery(itemsEl, dragProxyEl) {
     layoutItems(items, position.value);
 
     let settleTween = null;
+    let swipeTween = null;
+
+    // quanti pixel verso l'alto servono per chiudere
+    const closeThreshold = 100;
 
     const draggable = Draggable.create(dragProxyEl, {
-        type: "x",
+        // lockAxis: al primo movimento Draggable sceglie un asse e blocca
+        // l'altro fino al rilascio, così uno swipe un po' storto non fa
+        // scorrere e chiudere insieme. Attenzione: this.lockedAxis è l'asse
+        // BLOCCATO, non quello del movimento — uno swipe verticale ha
+        // lockedAxis "x"
+        type: "x,y",
+        lockAxis: true,
         trigger: itemsEl,
         onPress() {
             settleTween?.kill();
+            swipeTween?.kill();
             this.startPosition = position.value;
             // larghezza di riferimento per convertire i pixel trascinati in
             // "elementi": quella dell'elemento attualmente più vicino al
@@ -127,12 +140,31 @@ export function createInfiniteGallery(itemsEl, dragProxyEl) {
             this.itemWidth = items[closest].offsetWidth;
         },
         onDrag() {
+            // swipe verticale: la gallery segue il dito solo verso l'alto
+            // (Math.min)
+            if (this.lockedAxis === "x") {
+                const y = Math.min(0, this.y - this.startY);
+                gsap.set(itemsEl, { y });
+                return;
+            }
+
             // trascinamento 1:1, senza easing: l'elemento segue il dito
             // esattamente, l'assestamento morbido arriva solo al rilascio
             position.value = this.startPosition - (this.x - this.startX) / this.itemWidth;
             layoutItems(items, position.value);
         },
         onDragEnd() {
+            // swipe verticale: oltre la soglia la gallery esce dallo schermo
+            // verso l'alto e poi si chiude, altrimenti torna al suo posto
+            if (this.lockedAxis === "x") {
+                const closing = this.y - this.startY < -closeThreshold;
+                swipeTween = gsap.to(itemsEl, closing
+                    ? { y: -window.innerHeight, duration: 0.3, ease: "power2.in", onComplete: onClose }
+                    : { y: 0, duration: 0.3, ease: "power3.out" }
+                );
+                return;
+            }
+
             // a rilascio, scatta all'elemento successivo/precedente se ci
             // si è spostati di più di "threshold" larghezze-elemento dal
             // punto di partenza, altrimenti torna a quello di partenza.
@@ -158,6 +190,7 @@ export function createInfiniteGallery(itemsEl, dragProxyEl) {
 
     return () => {
         settleTween?.kill();
+        swipeTween?.kill();
         draggable.kill();
     };
 }
