@@ -105,19 +105,19 @@ export default function CurriculumPage() {
             <div className="grid grid-cols-12 gap-y-24 sm:gap-x-2 xl:gap-x-4 py-24 print:grid-cols-10 print:-translate-y-1/2">
 
                 <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3 border-t border-stone-200 pt-2">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
+                    <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
                     <AppList list={formazione} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-4 print:col-span-3 border-t border-stone-200 pt-2">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</h3>
+                    <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</h3>
                     <AppList list={esperienza} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-start-9 border-t border-stone-200 pt-2">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Stack</h3>
+                    <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Stack</h3>
                     <AppList list={stack} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-4 print:hidden border-t border-stone-200 pt-2">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4">Work</h3>
+                    <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4">Work</h3>
                     <AppList list={work} />
                 </div>
 
