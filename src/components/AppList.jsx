@@ -30,7 +30,7 @@ export default function AppList({ list }) {
     }, { dependencies: [openId] })
 
     return (
-        <ul className="text-[.625rem] sm:text-xs xl:text-sm tracking-widest grid grid-rows-1 gap-4">
+        <ul className="text-[.625rem] lg:text-xs xl:text-sm tracking-widest grid grid-rows-1 gap-4">
             {
                 list.map((item) => (
                     <li key={item.id} className="font-extralight">
@@ -45,7 +45,7 @@ export default function AppList({ list }) {
                                             <button className="cursor-pointer" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>{voce.title}</button>
                                             {openId === voce.id && voce.url &&
                                                 <div className="pt-2 pb-8 w-full">
-                                                    <Link to={voce.url} target="_blank" className="text-[10px] xl:text-xs block">
+                                                    <Link to={voce.url} target="_blank" className="text-[.625rem] xl:text-xs block">
                                                         {voce.description}
                                                         <div>Visita {voce.title}</div>
                                                     </Link>

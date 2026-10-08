@@ -30,7 +30,7 @@ export default function CurriculumPage() {
     }
 
     return (
-        <div className="print:relative print:min-h-[calc(29.7cm-32px)]">
+        <div className="py-[6vw] print:relative print:min-h-[calc(29.7cm-32px)]">
 
             <div className="hidden print:block">
                 <div className="grid grid-cols-10">
@@ -62,9 +62,9 @@ export default function CurriculumPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-12 gap-y-10 gap-2 xl:gap-x-4 print:grid-cols-10 print:-translate-y-1/2">
+            <div className="grid grid-cols-12 gap-x-2 xl:gap-x-4 gap-y-[6vw] print:grid-cols-10 print:-translate-y-1/2">
 
-                <div className="col-span-12 print:col-span-6 pt-6 print:col-start-5">
+                <div className="col-span-12 print:col-span-6 print:col-start-5">
                     <p className="text-base sm:text-[3.125vw] font-extralight flex flex-wrap justify-between gap-y-[.125em] gap-x-[.75em] uppercase leading-[.75em] tracking-wide sm:tracking-tighter print:text-[20px]/[20px] print:normal-case">
                         {introText.split(" ").flatMap((word, i) => [
                             <span key={`w-${i}`} className="overflow-hidden p-[.075em] print:overflow-visible">
@@ -92,7 +92,7 @@ export default function CurriculumPage() {
                 </div>
                 <div className="col-span-6 md:col-span-2 border-t border-stone-200 pt-2">
                     <button className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" to="/cv">
-                        <span className="word-reveal block">Get CV</span>
+                        <span className="word-reveal block">Get C V</span>
                     </button>
                 </div>
                 <div className="col-span-6 md:col-span-2 border-t border-stone-200 pt-2 print:hidden">
@@ -100,9 +100,6 @@ export default function CurriculumPage() {
                         <span className="word-reveal block">{copied ? "Email copied" : "Email me"}</span>
                     </button>
                 </div>
-
-            </div>
-            <div className="grid grid-cols-12 gap-y-24 sm:gap-x-2 xl:gap-x-4 py-24 print:grid-cols-10 print:-translate-y-1/2">
 
                 <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3 border-t border-stone-200 pt-2">
                     <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>

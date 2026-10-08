@@ -20,37 +20,37 @@ export default function IndexPage() {
 
     return (
 
-        <div className="">
+        <div className="py-2 sm:py-4">
 
-            <div className="grid grid-cols-12 sm:gap-y-4">
-                <div className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-3 max-sm:hidden">
-                    <div className="font-extralight leading-none tracking-wide uppercase overflow-hidden">
-                        <span className="word-reveal block">Odon Airoldi</span>
+            <div className="grid grid-cols-12 gap-x-2 xl:gap-x-4">
+                <div className="md:col-span-4 max-sm:hidden">
+                    <div className="text-xs md:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden">
+                        <span className="word-reveal block">O<span className="max-md:hidden">don</span> A<span className="max-md:hidden">iroldi</span></span>
                     </div>
                 </div>
-                <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden">
-                    <div className="font-extralight leading-none tracking-wide uppercase overflow-hidden mb-4">
+                <div className="sm:col-span-3 md:col-span-2 sm:col-start-3 max-sm:hidden">
+                    <div className="text-xs md:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden mb-4">
                         <span className="word-reveal block">Stack</span>
                     </div>
                     <AppList list={stack} />
                 </div>
-                <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden">
-                    <div className="font-extralight leading-none tracking-wide uppercase overflow-hidden mb-4">
+                <div className="sm:col-span-3 md:col-span-2 max-sm:hidden">
+                    <div className="text-xs md:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden mb-4">
                         <span className="word-reveal block">Work</span>
                     </div>
                     <AppList list={work} />
                 </div>
-                <div className="col-span-12 sm:col-span-2">
-                    <Link className="font-extralight max-sm:text-[6vw] leading-none tracking-wide uppercase overflow-hidden" to="/cv">
-                        <span className="word-reveal max-sm:flex max-sm:justify-between"><span className="sm:hidden">MY</span><span>CV</span></span>
+                <div className="col-span-12 sm:col-span-2 md:col-span-2">
+                    <Link className="text-xs md:text-sm xl:text-base font-extralight word-spacing-[.5em] max-sm:text-[6vw] leading-none tracking-wide uppercase overflow-hidden" to="/cv">
+                        <span className="word-reveal block max-sm:flex max-sm:justify-between"><span className="sm:hidden">MY</span><span>C V</span></span>
                     </Link>
                 </div>
-                <div className="lg:col-span-2 max-lg:hidden">
-                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block" type="button" onClick={handleCopyEmail}>
+                <div className="sm:col-span-2 md:col-span-2 max-sm:hidden">
+                    <button className="text-xs md:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" type="button" onClick={handleCopyEmail}>
                         <span className="word-reveal block">{copied ? "Email copied" : "Email me"}</span>
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
