@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { stack, formazione, esperienza, work } from "../data/data"
 import AppList from "../components/AppList";
@@ -28,18 +28,6 @@ export default function CurriculumPage() {
             setTimeout(() => setCopied(false), 2000)
         } catch { }
     }
-
-    // API key openweathermap
-    const apiKey = import.meta.env.VITE_API_KEY_OWM
-    const [dataWeather, setDataWeather] = useState({})
-    // Chiamata AJAX tramite fetch API openweathermap
-    useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=Lecco&appid=${apiKey}&units=metric`)
-            .then(res => res.json())
-            .then(data => {
-                setDataWeather(data)
-            })
-    }, [apiKey])
 
     return (
         <div className="print:relative print:min-h-[calc(29.7cm-32px)]">
@@ -74,10 +62,10 @@ export default function CurriculumPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-12 gap-y-4 print:grid-cols-10 print:-translate-y-1/2">
+            <div className="grid grid-cols-12 gap-y-10 gap-2 xl:gap-x-4 print:grid-cols-10 print:-translate-y-1/2">
 
-                <div className="col-span-12 print:col-span-6 print:col-start-5">
-                    <p className="text-base sm:text-[3.125vw] font-extralight flex flex-wrap justify-center gap-y-[.125em] gap-x-[.75em] uppercase leading-[.75em] tracking-wide sm:tracking-tighter print:text-[20px]/[20px] print:normal-case">
+                <div className="col-span-12 print:col-span-6 pt-6 print:col-start-5">
+                    <p className="text-base sm:text-[3.125vw] font-extralight flex flex-wrap justify-between gap-y-[.125em] gap-x-[.75em] uppercase leading-[.75em] tracking-wide sm:tracking-tighter print:text-[20px]/[20px] print:normal-case">
                         {introText.split(" ").flatMap((word, i) => [
                             <span key={`w-${i}`} className="overflow-hidden p-[.075em] print:overflow-visible">
                                 <span className="word-reveal block">{word}</span>
@@ -87,42 +75,37 @@ export default function CurriculumPage() {
                     </p>
                 </div>
 
-                <div className="col-span-12 sm:col-span-4 md:col-span-4 lg:col-span-3 max-sm:hidden print:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden print:text-6xl print:font-medium">
+                <div className="col-span-6 md:col-span-4 border-t border-stone-200 pt-2 print:hidden">
+                    <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden print:text-right print:text-6xl print:font-medium">
                         <span className="word-reveal block">Odon Airoldi</span>
-                    </h3>
+                    </div>
                 </div>
-                <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden print:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden print:text-right">
+                <div className="col-span-3 md:col-span-2 border-t border-stone-200 pt-2 print:hidden">
+                    <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden print:text-right">
                         <span className="word-reveal block">23900</span>
-                    </h3>
+                    </div>
                 </div>
-                <div className="sm:col-span-3 lg:col-span-2 max-sm:hidden print:hidden">
-                    <h3 className="font-extralight leading-none tracking-wide uppercase overflow-hidden">
+                <div className="col-span-3 md:col-span-2 border-t border-stone-200 pt-2 print:hidden">
+                    <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden">
                         <span className="word-reveal block">17 12 87</span>
-                    </h3>
+                    </div>
                 </div>
-                <div className="col-span-12 sm:col-span-2">
-                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block max-sm:w-full" to="/cv">
-                        <span className="word-reveal max-sm:flex max-sm:justify-between"><span>Get</span> <span>CV</span></span>
+                <div className="col-span-6 md:col-span-2 border-t border-stone-200 pt-2">
+                    <button className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" to="/cv">
+                        <span className="word-reveal block">Get CV</span>
                     </button>
                 </div>
-                <div className="lg:col-span-2 max-lg:hidden print:hidden">
-                    <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block" type="button" onClick={handleCopyEmail}>
+                <div className="col-span-6 md:col-span-2 border-t border-stone-200 pt-2 print:hidden">
+                    <button className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" type="button" onClick={handleCopyEmail}>
                         <span className="word-reveal block">{copied ? "Email copied" : "Email me"}</span>
                     </button>
-                </div>
-                <div className="lg:col-span-1 max-lg:hidden print:hidden print:hidden">
-                    <h3 className="font-extralight tracking-wide uppercase overflow-hidden">
-                        <span className="word-reveal block">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</span>
-                    </h3>
                 </div>
 
             </div>
             <div className="grid grid-cols-12 gap-y-24 sm:gap-x-2 xl:gap-x-4 py-24 print:grid-cols-10 print:-translate-y-1/2">
 
                 <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3 border-t border-stone-200 pt-2">
-                    <h3 className="font-extralight- leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
+                    <h3 className="font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
                     <AppList list={formazione} />
                 </div>
                 <div className="col-span-6 col-start-7 md:col-span-4 print:col-span-3 border-t border-stone-200 pt-2">
@@ -146,7 +129,7 @@ export default function CurriculumPage() {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 }
 

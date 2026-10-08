@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { stack, work } from "../data/data"
 import AppList from "../components/AppList"
 
@@ -17,18 +17,6 @@ export default function IndexPage() {
             setTimeout(() => setCopied(false), 2000)
         } catch { }
     }
-
-    // API key openweathermap
-    const apiKey = import.meta.env.VITE_API_KEY_OWM
-    const [dataWeather, setDataWeather] = useState({})
-    // Chiamata AJAX tramite fetch API openweathermap
-    useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=Lecco&appid=${apiKey}&units=metric`)
-            .then(res => res.json())
-            .then(data => {
-                setDataWeather(data)
-            })
-    }, [apiKey])
 
     return (
 
@@ -61,11 +49,6 @@ export default function IndexPage() {
                     <button className="font-extralight leading-none tracking-wide uppercase overflow-hidden cursor-pointer block" type="button" onClick={handleCopyEmail}>
                         <span className="word-reveal block">{copied ? "Email copied" : "Email me"}</span>
                     </button>
-                </div>
-                <div className="lg:col-span-1 max-lg:hidden">
-                    <div className="font-extralight leading-none tracking-wide uppercase">
-                        <span className="word-reveal block">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</span>
-                    </div>
                 </div>
             </div>
         </div>

@@ -10,10 +10,12 @@
     font-family: 'Zalando Sans Variable', sans-serif;
 }
 
-/* @utility (non una classe normale) così Tailwind ci applica anche le
-   varianti: sm:text-justify-last, max-md:text-justify-last, hover:… */
 @utility text-justify-last {
     text-align-last: justify;
+}
+
+@utility word-spacing-* {
+    word-spacing: --value([length]);
 }
 
 .text-justify-inter-character {
