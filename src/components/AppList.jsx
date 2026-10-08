@@ -41,7 +41,7 @@ export default function AppList({ list }) {
                                     typeof voce === "string" ? (
                                         <li key={voce}>{voce}</li>
                                     ) : (
-                                        <li key={voce.id}>
+                                        <li key={voce.id} className="relative">
                                             <button className="cursor-pointer flex gap-1 items-center" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>
                                                 <span>{voce.title}</span>
                                                 <span className="relative w-2 h-2 mt-[1px]">
@@ -55,10 +55,14 @@ export default function AppList({ list }) {
                                             </button>
                                             {openId === voce.id && voce.url &&
                                                 <div className="pt-2 pb-8 w-full">
-                                                    <Link to={voce.url} target="_blank" className="text-[.625rem] xl:text-xs block">
-                                                        {voce.description}
-                                                        <div>Visita {voce.title}</div>
-                                                    </Link>
+                                                    <span className="absolute top-[.8em] -left-[2.75em] w-[2.25em] h-[1em] block bg-orange-600-">
+                                                        <span className="absolute top-0 left-0 w-full h-[1px] bg-stone-200"></span>
+                                                        <span className="absolute top-0 left-0 w-[1px] h-full bg-stone-200"></span>
+                                                    </span>
+                                                    <div className="text-[.625rem] xl:text-xs block -ms-[3em]">
+                                                        <p>{voce.description}</p>
+                                                        <Link to={voce.url} target="_blank">Visita {voce.title}</Link>
+                                                    </div>
                                                 </div>
                                             }
                                             {openId === voce.id && voce.gallery && createPortal(
