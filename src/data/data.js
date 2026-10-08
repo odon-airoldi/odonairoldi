@@ -79,7 +79,7 @@ const work = [
         items: [
             {
                 id: 1,
-                title: "run-club.dev",
+                title: "Run Club",
                 description: `
                 Applicazione full stack con frontend in React e backend in Laravel, comunicanti tramite API RESTful.Ho implementato l'autenticazione degli utenti con Laravel Sanctum, progettato lo schema relazionale su MySQL e gestito migrazioni e relazioni tra entità con Eloquent ORM, strutturando gli endpoint secondo un'architettura MVC.
                 `,
@@ -87,7 +87,7 @@ const work = [
             },
             {
                 id: 2,
-                title: "tuttocialde.it",
+                title: "Tuttocialde",
                 description: `
                 Redesign UI di un e-commerce basato su nopCommerce. Ho sviluppato i template frontend in HTML e CSS e li ho integrati nelle view Razor della piattaforma, adattando il layout ai componenti nativi di catalogo, carrello e checkout.
                 `,
@@ -95,14 +95,14 @@ const work = [
             },
             {
                 id: 3,
-                title: "caffeagostani.com",
+                title: "Caffè Agostani",
                 description: `
                 Sviluppo frontend da zero di un e-commerce su nopCommerce. Ho convertito il design in template HTML e CSS responsive e li ho integrati nelle view Razor, collegandoli ai componenti e ai dati gestiti dalla piattaforma.        `,
                 url: "https://github.com/odon-airoldi/run-club-api"
             },
             {
                 id: 4,
-                title: "geomont.com",
+                title: "Geomont",
                 description: `
                 Sito corporate su WordPress con tema custom sviluppato da zero. Ho strutturato i template secondo la template hierarchy di WordPress e implementato in JavaScript un layout a griglia dinamico per la presentazione grafica dei contenuti.
                 `,
@@ -110,7 +110,7 @@ const work = [
             },
             {
                 id: 5,
-                title: "essense-mag.com",
+                title: "Essense Magazine",
                 description: `
                 Portale editoriale su WordPress con tema custom sviluppato da zero. Ho implementato i template per articoli, categorie e archivi secondo la template hierarchy, ottimizzando la presentazione dei contenuti e l'integrazione con il flusso editoriale del CMS.
                 `,
@@ -118,7 +118,7 @@ const work = [
             },
             {
                 id: 6,
-                title: "studiolops.it",
+                title: "Studio Lops",
                 description: `
                 Sito per uno studio fotografico su WordPress con tema custom sviluppato da zero. Ho realizzato template dedicati alla presentazione di gallerie e contenuti visivi, con layout responsive e gestione delle immagini integrata nel CMS.
                 `,

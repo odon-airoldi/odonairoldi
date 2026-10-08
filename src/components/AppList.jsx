@@ -41,25 +41,40 @@ export default function AppList({ list }) {
                                     typeof voce === "string" ? (
                                         <li key={voce}>{voce}</li>
                                     ) : (
-                                        <li key={voce.id} className="relative">
+                                        <li key={voce.id} className="">
                                             <button className="cursor-pointer flex gap-1 items-center" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>
                                                 <span>{voce.title}</span>
-                                                <span className="relative w-2 h-2 mt-[1px]">
-                                                    <span className="absolute top-0 left-0 w-6/8 h-1/8 bg-stone-200"></span>
-                                                    <span className="absolute top-0 left-0 w-1/8 h-6/8 bg-stone-200"></span>
-                                                    <span className="absolute top-2/8 left-2/8 w-6/8 h-1/8 bg-stone-200"></span>
-                                                    <span className="absolute top-2/8 left-2/8 w-1/8 h-6/8 bg-stone-200"></span>
-                                                    <span className="absolute top-2/8 left-7/8 w-1/8 h-6/8 bg-stone-200"></span>
-                                                    <span className="absolute top-7/8 left-2/8 w-6/8 h-1/8 bg-stone-200"></span>
-                                                </span>
+                                                {voce.url ?
+                                                    <span className="relative w-[16px] h-[8px] mt-[1px] bg-orange-600-">
+                                                        <span className="absolute top-0 left-0 w-8/16 h-1/8 bg-stone-200"></span>
+                                                        <span className="absolute top-0 left-0 w-1/16 h-6/8 bg-stone-200"></span>
+                                                        <span className="absolute top-0 left-7/16 w-1/16 h-3/8 bg-stone-200"></span>
+                                                        <span className="absolute top-5/8 left-0 w-2/16 h-1/8 bg-stone-200"></span>
+
+                                                        <span className="absolute top-5/8 left-4/16 w-8/16 h-1/8 bg-stone-200"></span>
+                                                        <span className="absolute top-0 left-11/16 w-1/16 h-6/8 bg-stone-200"></span>
+                                                        <span className="absolute top-3/8 left-4/16 w-1/16 h-3/8 bg-stone-200"></span>
+                                                        <span className="absolute top-0 left-10/16 w-2/16 h-1/8 bg-stone-200"></span>
+
+                                                    </span>
+                                                    :
+                                                    <span className="relative w-2 h-2 mt-[1px]">
+                                                        <span className="absolute top-0 left-0 w-6/8 h-1/8 bg-stone-200"></span>
+                                                        <span className="absolute top-0 left-0 w-1/8 h-6/8 bg-stone-200"></span>
+                                                        <span className="absolute top-2/8 left-2/8 w-6/8 h-1/8 bg-stone-200"></span>
+                                                        <span className="absolute top-2/8 left-2/8 w-1/8 h-6/8 bg-stone-200"></span>
+                                                        <span className="absolute top-2/8 left-7/8 w-1/8 h-6/8 bg-stone-200"></span>
+                                                        <span className="absolute top-7/8 left-2/8 w-6/8 h-1/8 bg-stone-200"></span>
+                                                    </span>
+                                                }
                                             </button>
                                             {openId === voce.id && voce.url &&
-                                                <div className="pt-2 pb-8 w-full">
-                                                    <span className="absolute top-[.8em] -left-[2.75em] w-[2.25em] h-[1em] block bg-orange-600-">
+                                                <div className="pt-[1em] pb-[2em] w-full relative">
+                                                    <span className="absolute -top-[.8em] -left-[2.75em] w-[2.25em] h-[1.5em] block bg-orange-600-">
                                                         <span className="absolute top-0 left-0 w-full h-[1px] bg-stone-200"></span>
                                                         <span className="absolute top-0 left-0 w-[1px] h-full bg-stone-200"></span>
                                                     </span>
-                                                    <div className="text-[.625rem] xl:text-xs block -ms-[3em]">
+                                                    <div className="block -ms-[3em]">
                                                         <p>{voce.description}</p>
                                                         <Link to={voce.url} target="_blank">Visita {voce.title}</Link>
                                                     </div>
