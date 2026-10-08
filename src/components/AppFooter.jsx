@@ -27,8 +27,8 @@ export default function AppFooter() {
                     <span className="word-reveal block">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</span>
                 </div>
             </div>
-            <div className={`p-2 sm:p-4 sm:fixed sm:bottom-0 sm:left-0 sm:right-auto ${pathname === "/" ? 'fixed bottom-0 left-0 right-0' : ''}`}>
-                <div className="w-full sm:w-24 lg:w-32">
+            <div className={`p-2 sm:p-4 fixed bottom-0 left-0 sm:w-32 lg:w-48 ${pathname === "/" ? 'w-full' : 'w-24'}`}>
+                <div className={`w-full`}>
                     <AppLogo />
                 </div>
             </div>

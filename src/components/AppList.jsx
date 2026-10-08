@@ -30,10 +30,10 @@ export default function AppList({ list }) {
     }, { dependencies: [openId] })
 
     return (
-        <ul className="text-[.625rem] lg:text-xs xl:text-sm tracking-widest grid grid-rows-1 gap-4">
+        <ul className="text-[.625rem] lg:text-xs xl:text-sm tracking-widest grid grid-rows-1 gap-y-[2vw]">
             {
                 list.map((item) => (
-                    <li key={item.id} className="font-extralight">
+                    <li key={item.id} className="font-extralight leading-[1.5]">
                         <span className="inline-block reveal-shift max-sm:text-right">{item.title}</span>
                         <ul className="ul">
                             {
