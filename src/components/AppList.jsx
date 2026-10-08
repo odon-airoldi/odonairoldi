@@ -42,7 +42,17 @@ export default function AppList({ list }) {
                                         <li key={voce}>{voce}</li>
                                     ) : (
                                         <li key={voce.id}>
-                                            <button className="cursor-pointer" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>{voce.title}</button>
+                                            <button className="cursor-pointer flex gap-1 items-center" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>
+                                                <span>{voce.title}</span>
+                                                <span className="relative w-[8px] h-[8px]">
+                                                    <span className="absolute top-[0px] left-[0px] w-[6px] h-[1px] bg-stone-200"></span>
+                                                    <span className="absolute top-[0px] left-[0px] w-[1px] h-[6px] bg-stone-200"></span>
+                                                    <span className="absolute top-[2px] left-[2px] w-[6px] h-[1px] bg-stone-200"></span>
+                                                    <span className="absolute top-[2px] left-[2px] w-[1px] h-[6px] bg-stone-200"></span>
+                                                    <span className="absolute top-[2px] left-[7px] w-[1px] h-[6px] bg-stone-200"></span>
+                                                    <span className="absolute top-[7px] left-[2px] w-[6px] h-[1px] bg-stone-200"></span>
+                                                </span>
+                                            </button>
                                             {openId === voce.id && voce.url &&
                                                 <div className="pt-2 pb-8 w-full">
                                                     <Link to={voce.url} target="_blank" className="text-[.625rem] xl:text-xs block">

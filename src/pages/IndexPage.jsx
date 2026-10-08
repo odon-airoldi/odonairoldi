@@ -20,7 +20,7 @@ export default function IndexPage() {
 
     return (
 
-        <div className="py-2 sm:py-4">
+        <div className="sm:py-4">
 
             <div className="grid grid-cols-12 gap-x-2 xl:gap-x-4">
                 <div className="md:col-span-4 max-sm:hidden">
