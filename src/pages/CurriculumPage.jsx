@@ -75,29 +75,29 @@ export default function CurriculumPage() {
                     </p>
                 </div>
 
-                <div className="col-span-6 md:col-span-4 border-t border-stone-200 pt-2 print:hidden">
+                <div className="col-span-6 md:col-span-4 print:hidden">
                     <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden print:text-right print:text-6xl print:font-medium">
-                        <span className="word-reveal block">Odon Airoldi</span>
+                        <div className="word-reveal border-t border-stone-200 pt-2">Odon Airoldi</div>
                     </div>
                 </div>
-                <div className="col-span-3 md:col-span-2 border-t border-stone-200 pt-2 print:hidden">
+                <div className="col-span-3 md:col-span-2 print:hidden">
                     <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden print:text-right">
-                        <span className="word-reveal block">23900</span>
+                        <div className="word-reveal border-t border-stone-200 pt-2">23900</div>
                     </div>
                 </div>
-                <div className="col-span-3 md:col-span-2 border-t border-stone-200 pt-2 print:hidden">
+                <div className="col-span-3 md:col-span-2 print:hidden">
                     <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden">
-                        <span className="word-reveal block">17 12 87</span>
+                        <div className="word-reveal border-t border-stone-200 pt-2">17 12 87</div>
                     </div>
                 </div>
-                <div className="col-span-6 md:col-span-2 border-t border-stone-200 pt-2">
+                <div className="col-span-6 md:col-span-2">
                     <button className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" to="/cv">
-                        <span className="word-reveal block">Get C V</span>
+                        <div className="word-reveal border-t border-stone-200 pt-2">Get C V</div>
                     </button>
                 </div>
-                <div className="col-span-6 md:col-span-2 border-t border-stone-200 pt-2 print:hidden">
+                <div className="col-span-6 md:col-span-2 print:hidden">
                     <button className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" type="button" onClick={handleCopyEmail}>
-                        <span className="word-reveal block">{copied ? "Email copied" : "Email me"}</span>
+                        <div className="word-reveal border-t border-stone-200 pt-2">{copied ? "Email copied" : "Email me"}</div>
                     </button>
                 </div>
 
