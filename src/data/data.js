@@ -83,6 +83,7 @@ const work = [
                 description: `
                 Applicazione full stack con frontend in React e backend in Laravel, comunicanti tramite API RESTful.Ho implementato l'autenticazione degli utenti con Laravel Sanctum, progettato lo schema relazionale su MySQL e gestito migrazioni e relazioni tra entità con Eloquent ORM, strutturando gli endpoint secondo un'architettura MVC.
                 `,
+                url_text: "github.com/odon-airoldi/run-club-api",
                 url: "https://github.com/odon-airoldi/run-club-api"
             },
             {
@@ -91,14 +92,16 @@ const work = [
                 description: `
                 Redesign UI di un e-commerce basato su nopCommerce. Ho sviluppato i template frontend in HTML e CSS e li ho integrati nelle view Razor della piattaforma, adattando il layout ai componenti nativi di catalogo, carrello e checkout.
                 `,
-                url: "https://github.com/odon-airoldi/run-club-api"
+                url_text: "www.tuttocialde.it",
+                url: "https://www.tuttocialde.it"
             },
             {
                 id: 3,
                 title: "Caffè Agostani",
                 description: `
                 Sviluppo frontend da zero di un e-commerce su nopCommerce. Ho convertito il design in template HTML e CSS responsive e li ho integrati nelle view Razor, collegandoli ai componenti e ai dati gestiti dalla piattaforma.        `,
-                url: "https://github.com/odon-airoldi/run-club-api"
+                url_text: "www.caffeagostani.com",
+                url: "https://www.caffeagostani.com"
             },
             {
                 id: 4,
@@ -106,7 +109,8 @@ const work = [
                 description: `
                 Sito corporate su WordPress con tema custom sviluppato da zero. Ho strutturato i template secondo la template hierarchy di WordPress e implementato in JavaScript un layout a griglia dinamico per la presentazione grafica dei contenuti.
                 `,
-                url: "https://github.com/odon-airoldi/run-club-api"
+                url_text: "www.geomont.com",
+                url: "https://wwww.geomont.com"
             },
             {
                 id: 5,
@@ -114,7 +118,8 @@ const work = [
                 description: `
                 Portale editoriale su WordPress con tema custom sviluppato da zero. Ho implementato i template per articoli, categorie e archivi secondo la template hierarchy, ottimizzando la presentazione dei contenuti e l'integrazione con il flusso editoriale del CMS.
                 `,
-                url: "https://github.com/odon-airoldi/run-club-api"
+                url_text: "essense-magazine.com",
+                url: "https://essense-magazine.com"
             },
             {
                 id: 6,
@@ -122,7 +127,8 @@ const work = [
                 description: `
                 Sito per uno studio fotografico su WordPress con tema custom sviluppato da zero. Ho realizzato template dedicati alla presentazione di gallerie e contenuti visivi, con layout responsive e gestione delle immagini integrata nel CMS.
                 `,
-                url: "https://github.com/odon-airoldi/run-club-api"
+                url_text: "www.studiofotograficolops.it",
+                url: "https://www.studiofotograficolops.it"
             }
         ]
     },
