@@ -33,7 +33,7 @@ export default function AppList({ list }) {
         <ul className="text-[.625rem] lg:text-xs tracking-widest grid grid-rows-1 gap-y-[2vw]">
             {
                 list.map((item) => (
-                    <li key={item.id} className="font-extralight leading-[1.5]">
+                    <li key={item.id} className="alive font-extralight leading-[1.5]">
                         <span className="inline-block reveal-shift max-sm:text-right">{item.title}</span>
                         <ul className="ul">
                             {

@@ -65,7 +65,7 @@ export default function CurriculumPage() {
             <div className="grid grid-cols-12 gap-x-2 xl:gap-x-4 gap-y-[8vw] print:grid-cols-10 print:-translate-y-1/2">
 
                 <div className="col-span-12 print:col-span-6 print:col-start-5">
-                    <p className="text-base sm:text-[3.125vw] font-extralight flex flex-wrap justify-between gap-y-[.125em] gap-x-[.75em] uppercase leading-[.75em] tracking-wide sm:tracking-tighter print:text-[20px]/[20px] print:normal-case">
+                    <p data-stagger="0.02" className="alive text-base sm:text-[3.125vw] font-extralight flex flex-wrap justify-between gap-y-[.125em] gap-x-[.75em] uppercase leading-[.75em] tracking-wide sm:tracking-tighter print:text-[20px]/[20px] print:normal-case">
                         {introText.split(" ").flatMap((word, i) => [
                             <span key={`w-${i}`} className="overflow-hidden p-[.075em] print:overflow-visible">
                                 <span className="word-reveal block">{word}</span>
@@ -76,45 +76,53 @@ export default function CurriculumPage() {
                 </div>
 
                 <div className="col-span-6 md:col-span-4 print:hidden">
-                    <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden print:text-right print:text-6xl print:font-medium">
+                    <div className="alive text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden print:text-right print:text-6xl print:font-medium">
                         <div className="word-reveal border-t border-stone-200 pt-2">Odon Airoldi</div>
                     </div>
                 </div>
                 <div className="col-span-3 md:col-span-2 print:hidden">
-                    <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden print:text-right">
+                    <div className="alive text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden print:text-right">
                         <div className="word-reveal border-t border-stone-200 pt-2">23900</div>
                     </div>
                 </div>
                 <div className="col-span-3 md:col-span-2 print:hidden">
-                    <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden">
+                    <div className="alive text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden">
                         <div className="word-reveal border-t border-stone-200 pt-2">17 12 87</div>
                     </div>
                 </div>
                 <div className="col-span-6 md:col-span-2">
-                    <button className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" to="/cv">
+                    <button className="alive text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" to="/cv">
                         <div className="word-reveal border-t border-stone-200 pt-2">Get C V</div>
                     </button>
                 </div>
                 <div className="col-span-6 md:col-span-2 print:hidden">
-                    <button className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" type="button" onClick={handleCopyEmail}>
+                    <button className="alive text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden cursor-pointer block w-full text-left" type="button" onClick={handleCopyEmail}>
                         <div className="word-reveal border-t border-stone-200 pt-2">{copied ? "Email copied" : "Email me"}</div>
                     </button>
                 </div>
 
-                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3 border-t border-stone-200 pt-2">
-                    <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</h3>
+                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-span-3 print:col-start-3">
+                    <div className="alive overflow-hidden">
+                        <div className="word-reveal border-t border-stone-200 pt-2 text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Formazione</div>
+                    </div>
                     <AppList list={formazione} />
                 </div>
-                <div className="col-span-6 col-start-7 md:col-span-4 print:col-span-3 border-t border-stone-200 pt-2">
-                    <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</h3>
+                <div className="col-span-6 col-start-7 md:col-span-4 print:col-span-3">
+                    <div className="alive overflow-hidden">
+                        <div className="word-reveal border-t border-stone-200 pt-2 text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Esperienza</div>
+                    </div>
                     <AppList list={esperienza} />
                 </div>
-                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-start-9 border-t border-stone-200 pt-2">
-                    <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Stack</h3>
+                <div className="col-span-6 col-start-7 md:col-span-4 md:col-start-5 print:col-start-9">
+                    <div className="alive overflow-hidden">
+                        <div className="word-reveal border-t border-stone-200 pt-2 text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4 print:text-sm print:normal-case">Stack</div>
+                    </div>
                     <AppList list={stack} />
                 </div>
-                <div className="col-span-6 col-start-7 md:col-span-4 print:hidden border-t border-stone-200 pt-2">
-                    <h3 className="text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4">Work</h3>
+                <div className="col-span-6 col-start-7 md:col-span-4 print:hidden">
+                    <div className="alive overflow-hidden">
+                        <div className="word-reveal border-t border-stone-200 pt-2 text-xs sm:text-sm xl:text-base font-extralight leading-none tracking-wide uppercase mb-4">Work</div>
+                    </div>
                     <AppList list={work} />
                 </div>
 

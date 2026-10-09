@@ -23,7 +23,7 @@ export default function AppFooter() {
 
         <footer>
             <div className="p-2 sm:p-4 fixed bottom-0 right-0 max-sm:hidden print:hidden">
-                <div className="text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden">
+                <div className="alive text-xs sm:text-sm xl:text-base font-extralight word-spacing-[.5em] leading-none tracking-wide uppercase overflow-hidden">
                     <span className="word-reveal block">LC {dataWeather.name && <span>{Math.round(dataWeather.main?.temp)}°C</span>}</span>
                 </div>
             </div>

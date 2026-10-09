@@ -8,73 +8,107 @@ import { Draggable } from "gsap/Draggable";
 // caricata per prima
 gsap.registerPlugin(ScrollTrigger, Draggable);
 
-// posiziona subito .reveal-shift e .ul nel loro stato nascosto/di partenza
-// (niente classi Tailwind come -translate-x-full sull'elemento: la posizione
-// vive solo qui). Va chiamata incondizionatamente, appena il componente
-// monta — resta nascosta per tutta la durata della splash (che comunque la
-// copre) così quando poi startRevealShift la anima parte già da lì, senza
-// scatti. Se invece si usasse fromTo con immediateRender per fare le due
-// cose insieme dentro startRevealShift (chiamata solo a splash finita),
-// l'elemento salterebbe dalla sua posizione naturale (0, mai stata nascosta)
-// a quella di partenza nel momento stesso in cui l'animazione dovrebbe solo
-// rivelarla — un salto visibile proprio mentre la splash sta sparendo.
-// toArray e non il selettore come stringa: lo scope è il layout, quindi
-// gira anche su pagine senza .reveal-shift/.ul, e con un array vuoto GSAP
-// non avvisa in console come fa per un selettore che non trova niente
-export function setElement() {
-    gsap.set(gsap.utils.toArray(".reveal-shift"), { x: 0 });
-    gsap.set(gsap.utils.toArray(".ul"), { x: 16 });
+// animazioni di ingresso, in due livelli:
+// - il genitore .alive decide QUANDO: è l'unità della sequenza (i genitori
+//   partono in ordine di documento) e il trigger dello ScrollTrigger. Non si
+//   muove mai, quindi ScrollTrigger ne misura la posizione esatta
+// - la classe del figlio decide COME: qui sotto, per ogni classe, lo stato di
+//   partenza (from) e quello finale (to). La posizione di partenza vive solo
+//   qui, niente classi Tailwind come -translate-x-full sull'elemento
+const REVEALS = {
+    "word-reveal": { from: { y: "100%", opacity: 0 }, to: { y: "0%", opacity: 1, ease: "power4.out" } },
+    "reveal-shift": { from: { x: 0 }, to: { x: "-100%", ease: "power2.out" } },
+    "ul": { from: { x: 16 }, to: { x: 0, ease: "power2.out" } },
+};
+const REVEAL_SELECTOR = Object.keys(REVEALS).map((name) => `.${name}`).join(", ");
+const revealOf = (el) => REVEALS[Object.keys(REVEALS).find((name) => el.classList.contains(name))];
+
+// secondi tra un figlio e il successivo dentro lo stesso genitore. Un
+// genitore può averne uno suo con data-stagger (es. data-stagger="0.02" su un
+// blocco di testo lungo, che altrimenti terrebbe in fila tutto il resto)
+const CHILD_STAGGER = 0.08;
+const staggerOf = (parent) => Number(parent.dataset.stagger) || CHILD_STAGGER;
+
+// getClientRects è vuoto per ogni elemento non disegnato, anche quando
+// display:none è su un antenato: un elemento nascosto a questo breakpoint
+// (es. sm:hidden) occuperebbe comunque un posto nella sequenza, ritardando
+// quelli dopo. I nascosti non vengono mai toccati da GSAP, quindi se un
+// resize li mostra appaiono già al loro posto
+const isDrawn = (el) => el.getClientRects().length > 0;
+
+// ordine di lettura a schermo: prima chi sta più in alto, a parità di riga chi
+// sta più a sinistra. Conta la posizione visiva, non quella nel DOM: in home
+// le liste di Stack/Work nel DOM stanno subito dopo i loro titoli, ma a
+// schermo sono sotto CV ed Email, e devono partire dopo
+function byScreenPosition(a, b) {
+    const ra = a.getBoundingClientRect();
+    const rb = b.getBoundingClientRect();
+    return ra.top !== rb.top ? ra.top - rb.top : ra.left - rb.left;
 }
 
-// le .word-reveal disegnate in questo momento: una parola nascosta a questo
-// breakpoint (es. sm:hidden, o dentro un genitore max-sm:hidden) occuperebbe
-// comunque un posto nello stagger, ritardando quelle dopo. getClientRects è
-// vuoto per ogni elemento non disegnato, anche quando display:none è su un
-// antenato. Le nascoste non vengono mai toccate da GSAP, quindi se un resize
-// le mostra appaiono già al loro posto
-function visibleWords() {
-    return gsap.utils.toArray(".word-reveal").filter((el) => el.getClientRects().length);
+// ogni genitore .alive visibile, in ordine di lettura a schermo, con i propri
+// figli animati visibili. I genitori non si muovono mai, quindi la loro
+// posizione è quella finale anche mentre i figli sono ancora spostati
+function aliveGroups() {
+    return gsap.utils.toArray(".alive")
+        .filter(isDrawn)
+        .sort(byScreenPosition)
+        .map((parent) => ({
+            parent,
+            children: gsap.utils.toArray(parent.querySelectorAll(REVEAL_SELECTOR))
+                .filter(isDrawn),
+        }))
+        .filter(({ children }) => children.length);
 }
 
-// nasconde subito le parole visibili sotto la propria riga
-export function setWordReveal() {
-    gsap.set(visibleWords(), { y: "100%", opacity: 0 });
+// porta subito ogni figlio nel suo stato di partenza. Va chiamata appena il
+// componente monta, e resta così per tutta la durata della splash (che
+// comunque lo copre): quando poi toReveal lo anima parte già da lì, senza
+// scatti. Con un fromTo dentro toReveal (chiamata solo a splash finita)
+// l'elemento salterebbe dalla posizione naturale a quella di partenza proprio
+// mentre la splash sta sparendo
+export function setReveal() {
+    aliveGroups().forEach(({ children }) =>
+        children.forEach((el) => gsap.set(el, revealOf(el).from))
+    );
 }
 
-// anima .reveal-shift e .ul verso la loro posizione finale (x: 0) quando
-// entrano nello schermo, uno ScrollTrigger indipendente per elemento. Uso
-// gsap.to, non fromTo: il punto di partenza è già quello impostato da
-// hideRevealShift, quindi non va ridichiarato — altrimenti l'elemento
-// verrebbe prima ri-portato lì (anche se ci si trova già) e poi animato
-export function toElement() {
-    gsap.utils.toArray(".reveal-shift").forEach((el) => {
-        gsap.to(el, {
-            x: "-100%",
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: { trigger: el, start: "top 90%" }
-        });
-    });
+// per ogni genitore una timeline che anima i suoi figli con uno stagger.
+// ScrollTrigger.batch raccoglie i genitori che entrano nello schermo nello
+// stesso momento (all'apertura della pagina tutti quelli già visibili, poi
+// quelli che arrivano con lo scroll) e li passa in ordine: dentro ogni gruppo
+// ogni timeline parte appena la precedente ha avviato il suo ultimo figlio,
+// uno stagger dopo, senza aspettare che finisca. Il delay avanza quindi di
+// uno stagger per ogni figlio: i figli di tutti i genitori si susseguono con
+// lo stesso ritmo, e anche un genitore con un solo figlio occupa il suo passo.
+// Le timeline si creano subito, in pausa, e al momento giusto si fanno solo
+// ripartire: create qui in modo sincrono restano registrate nel contesto di
+// useGSAP, che le annulla al cambio pagina. Create dentro onEnter (più tardi)
+// sfuggirebbero al contesto e continuerebbero a girare.
+// start "top bottom", cioè appena il genitore entra nello schermo: gli
+// elementi fixed vicino al fondo (es. LC nel footer) non scorrono mai, e con
+// una soglia più alta non partirebbero
+export function toReveal() {
+    const timelines = new Map(aliveGroups().map(({ parent, children }) => {
+        const stagger = staggerOf(parent);
+        const tl = gsap.timeline({ paused: true });
+        children.forEach((el, i) => tl.to(el, { ...revealOf(el).to, duration: .8 }, i * stagger));
+        return [parent, tl];
+    }));
 
-    gsap.utils.toArray(".ul").forEach((el) => {
-        gsap.to(el, {
-            x: 0,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: { trigger: el, start: "top 90%" }
-        });
-    });
-
-}
-
-// fa risalire le parole visibili nella loro posizione, una dopo l'altra
-export function toWordReveal() {
-    gsap.to(visibleWords(), {
-        y: "0%",
-        opacity: 1,
-        duration: 1,
-        ease: "power4.out",
-        stagger: { amount: 1.2 }
+    ScrollTrigger.batch([...timelines.keys()], {
+        start: "top bottom",
+        once: true,
+        // l'ordine in cui ScrollTrigger passa il gruppo non è garantito: lo si
+        // riporta a quello di lettura
+        onEnter: (batch) => {
+            let start = 0;
+            batch.sort(byScreenPosition).forEach((parent) => {
+                const tl = timelines.get(parent);
+                tl.delay(start).restart(true);
+                start += tl.getChildren().length * staggerOf(parent);
+            });
+        },
     });
 }
 

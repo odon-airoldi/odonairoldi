@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
 import { useAppContext } from "../contexts/AppContext"
-import { setElement, toElement, setWordReveal, toWordReveal } from "../utils/gsap"
+import { setReveal, toReveal } from "../utils/gsap"
 
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
@@ -18,10 +18,9 @@ export default function AppLayout() {
 
     // le animazioni di ingresso di tutte le pagine partono da qui, non dai
     // singoli componenti: il layout contiene header, pagina e footer, quindi
-    // una sola gsap.to(".word-reveal") trova tutte le parole in ordine di
-    // documento e lo stagger le fa partire una dopo l'altra anche se stanno
-    // in genitori e componenti diversi, e ogni pagina non deve ripetere lo
-    // stesso useGSAP per .reveal-shift/.ul.
+    // toReveal trova tutti i genitori .alive in ordine di documento e li fa
+    // partire uno dopo l'altro anche se stanno in componenti diversi, e ogni
+    // pagina non deve ripetere lo stesso useGSAP.
     // useGSAP gira in un layout effect, che React esegue dopo quelli dei
     // figli: la pagina appena montata è già nel DOM quando qui si cercano gli
     // elementi. pathname fa ripartire tutto a ogni cambio pagina (il layout
@@ -33,13 +32,11 @@ export default function AppLayout() {
     // nel viewport scatterebbero subito, e l'animazione finirebbe
     // (invisibile) dietro la splash stessa
     useGSAP(() => {
-        setElement();
-        setWordReveal();
+        setReveal();
 
         if (showSplash) return;
 
-        toElement();
-        toWordReveal();
+        toReveal();
     }, { scope: layoutRef, dependencies: [showSplash, pathname] });
 
     return (
