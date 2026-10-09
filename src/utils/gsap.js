@@ -17,8 +17,8 @@ gsap.registerPlugin(ScrollTrigger, Draggable);
 //   qui, niente classi Tailwind come -translate-x-full sull'elemento
 const REVEALS = {
     "word-reveal": { from: { y: "100%", opacity: 0 }, to: { y: "0%", opacity: 1, ease: "power4.out" } },
-    "reveal-shift": { from: { x: 0 }, to: { x: "-100%", ease: "power2.out" } },
-    "ul": { from: { x: 16 }, to: { x: 0, ease: "power2.out" } },
+    "reveal-shift": { from: { x: 0, opacity: 0 }, to: { x: "-100%", opacity: 1, ease: "power2.out" } },
+    "ul": { from: { x: 16, opacity: 0 }, to: { x: 0, opacity: 1, ease: "power2.out" } },
 };
 const REVEAL_SELECTOR = Object.keys(REVEALS).map((name) => `.${name}`).join(", ");
 const revealOf = (el) => REVEALS[Object.keys(REVEALS).find((name) => el.classList.contains(name))];
