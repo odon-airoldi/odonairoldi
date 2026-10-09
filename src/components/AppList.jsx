@@ -45,18 +45,22 @@ export default function AppList({ list }) {
                                             <button className="cursor-pointer flex gap-1 items-center" onClick={() => setOpenId(openId === voce.id ? null : voce.id)}>
                                                 <span>{voce.title}</span>
                                                 {voce.url ?
-                                                    <span className="relative w-[12px] h-[8px] mt-[4px]">
-                                                        <span className="absolute top-0 left-0 w-8/12 h-1/8 bg-stone-200"></span>
-                                                        <span className="absolute top-0 left-0 w-1/12 h-6/8 bg-stone-200"></span>
-                                                        <span className="absolute top-0 left-7/12 w-1/12 h-3/8 bg-stone-200"></span>
-                                                        <span className="absolute top-5/8 left-0 w-2/12 h-1/8 bg-stone-200"></span>
-                                                        <span className="absolute top-5/8 left-4/12 w-8/12 h-1/8 bg-stone-200"></span>
-                                                        <span className="absolute top-0 left-11/12 w-1/12 h-6/8 bg-stone-200"></span>
-                                                        <span className="absolute top-3/8 left-4/12 w-1/12 h-3/8 bg-stone-200"></span>
-                                                        <span className="absolute top-0 left-10/12 w-2/12 h-1/8 bg-stone-200"></span>
-                                                    </span>
+                                                    (openId !== voce.id ?
+                                                        <span className="relative w-[12px] h-[8px] mt-[4px]">
+                                                            <span className="absolute top-0 left-0 w-8/12 h-1/8 bg-stone-200"></span>
+                                                            <span className="absolute top-0 left-0 w-1/12 h-6/8 bg-stone-200"></span>
+                                                            <span className="absolute top-0 left-7/12 w-1/12 h-3/8 bg-stone-200"></span>
+                                                            <span className="absolute top-5/8 left-0 w-2/12 h-1/8 bg-stone-200"></span>
+                                                            <span className="absolute top-5/8 left-4/12 w-8/12 h-1/8 bg-stone-200"></span>
+                                                            <span className="absolute top-0 left-11/12 w-1/12 h-6/8 bg-stone-200"></span>
+                                                            <span className="absolute top-3/8 left-4/12 w-1/12 h-3/8 bg-stone-200"></span>
+                                                            <span className="absolute top-0 left-10/12 w-2/12 h-1/8 bg-stone-200"></span>
+                                                        </span>
+                                                        :
+                                                        <></>
+                                                    )
                                                     :
-                                                    <span className="relative w-[12px] h-[8px] mt-[4px] bg-orange-6-00">
+                                                    <span className="relative w-[12px] h-[8px] mt-[2px] bg-orange-6-00">
                                                         <span className="absolute top-0 left-0 w-9/12 h-1/8 bg-stone-200"></span>
                                                         <span className="absolute top-0 left-0 w-1/12 h-5/8 bg-stone-200"></span>
                                                         <span className="absolute top-3/8 left-3/12 w-9/12 h-1/8 bg-stone-200"></span>
