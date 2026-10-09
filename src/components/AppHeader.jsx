@@ -9,7 +9,7 @@ export default function AppHeader() {
     // della pagina, così partono tutte in un'unica successione
     return (
 
-        <header className="sticky top-0 pt-2 sm:pt-4 px-2 sm:px-4 bg-zinc-950 z-1">
+        <header className="sticky top-0 pt-2 sm:pt-4 px-2 sm:px-4 bg-zinc-950 z-1 print:bg-white">
             <div className="grid grid-cols-12">
                 <div className="col-span-12">
                     <Link to="/" className="text-[6vw] sm:text-[7.5vw] leading-none sm:leading-[.8] font-extralight sm:font-[450] tracking-tighter uppercase">

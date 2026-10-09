@@ -1,11 +1,6 @@
 @import "tailwindcss";
 @import "@fontsource-variable/zalando-sans/wdth.css";
 
-/* niente scroll orizzontale del documento: overflow-x:clip sul layout non basta sui
-   browser che non lo supportano (iOS < 16) né contro elementi fixed più larghi dello
-   schermo. Su html (non su body) si propaga al viewport, quindi lo scroll verticale
-   e ScrollTrigger continuano a usare la finestra */
-
 .font-zalando {
     font-family: 'Zalando Sans Variable', sans-serif;
 }
@@ -33,21 +28,4 @@
 @page {
     size: A4;
     margin: 0;
-}
-
-@media print {
-
-    .reveal-shift {
-        transform: translateX(-100%) !important;
-    }
-
-    .ul {
-        transform: translateX(0) !important;
-    }
-
-    .word-reveal {
-        transform: translateY(0) !important;
-        opacity: 1 !important;
-    }
-
 }

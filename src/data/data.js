@@ -83,7 +83,7 @@ const work = [
                 description: `
                 Applicazione full stack con frontend in React e backend in Laravel, comunicanti tramite API RESTful.Ho implementato l'autenticazione degli utenti con Laravel Sanctum, progettato lo schema relazionale su MySQL e gestito migrazioni e relazioni tra entità con Eloquent ORM, strutturando gli endpoint secondo un'architettura MVC.
                 `,
-                url_text: "github.com/odon-airoldi/run-club-api",
+                url_text: "Repo on Github",
                 url: "https://github.com/odon-airoldi/run-club-api"
             },
             {

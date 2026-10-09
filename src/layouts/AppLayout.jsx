@@ -24,23 +24,25 @@ export default function AppLayout() {
     // useGSAP gira in un layout effect, che React esegue dopo quelli dei
     // figli: la pagina appena montata è già nel DOM quando qui si cercano gli
     // elementi. pathname fa ripartire tutto a ogni cambio pagina (il layout
-    // non si rismonta), e useGSAP annulla prima animazioni e ScrollTrigger
-    // della pagina precedente.
+    // non si rismonta), e useGSAP annulla prima le animazioni della pagina
+    // precedente.
     // Gli stati di partenza si impostano subito e restano per tutta la
     // splash, così quando l'animazione parte non c'è nessun salto. Finché la
-    // splash è a schermo non parte nulla: gli ScrollTrigger di elementi già
-    // nel viewport scatterebbero subito, e l'animazione finirebbe
-    // (invisibile) dietro la splash stessa
+    // splash è a schermo non parte nulla: gli elementi già nel viewport
+    // partirebbero subito, e l'animazione finirebbe (invisibile) dietro la
+    // splash stessa
     useGSAP(() => {
         setReveal();
 
         if (showSplash) return;
 
-        toReveal();
+        // toReveal ritorna la funzione che scollega il suo IntersectionObserver:
+        // ritornata qui, useGSAP la chiama al cambio pagina insieme al revert
+        return toReveal();
     }, { scope: layoutRef, dependencies: [showSplash, pathname] });
 
     return (
-        <div ref={layoutRef} className="bg-zinc-950 text-zinc-200 font-zalando font-stretch-[117.5%] relative min-h-svh print:bg-white print:text-black">
+        <div ref={layoutRef} className="bg-zinc-950 text-zinc-200 font-zalando font-stretch-[117.5%] relative min-h-svh">
 
             <div ref={cursorRef} className="fixed w-3 h-3 bg-zinc-200 pointer-events-none z-50 max-md:hidden print:hidden"></div>
 
